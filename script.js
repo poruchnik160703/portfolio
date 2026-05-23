@@ -178,8 +178,7 @@ cards.forEach((card) => {
       perspective(1200px)
       rotateX(${rotateX}deg)
       rotateY(${rotateY}deg)
-      translateY(-5
-      px)
+      translateY(-5px)
       `;
   });
 
