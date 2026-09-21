@@ -1,66 +1,180 @@
-/* =========================
-   RESET
-========================= */
+/*
+==========================================================================
+  PORTFOLIO — css/style.css
+==========================================================================
+
+  RU: Единственный файл стилей сайта. Порядок такой же, как на странице (сверху вниз).
+      Чтобы найти нужное, нажмите Ctrl+F и введите номер раздела, например «[6]».
+  FR : Unique feuille de styles du site. L'ordre est celui de la page (de haut en bas).
+      Pour trouver un passage, faites Ctrl+F et tapez le numéro de section, par exemple « [6] ».
+
+  ОГЛАВЛЕНИЕ / SOMMAIRE
+   [1]  Variables (:root)         — цвета, скругления, отступы / couleurs, arrondis, espaces
+   [2]  Base                      — сброс, body, ссылки, фокус / reset, body, liens, focus
+   [3]  Décor d'arrière-plan      — фон, световые пятна, свечение курсора / fond, halos, halo du curseur
+   [4]  Composants communs        — кнопки, секции, появление, «стекло», теги / boutons, sections, apparition, « verre », étiquettes
+   [5]  Header + navigation       — шапка, меню, бургер / en-tête, menu, burger
+   [6]  Hero                      — главный экран, бегущая лента, печатающийся текст / accueil, bandeau, texte tapé
+   [7]  Profil                    — «À propos de moi» / présentation
+   [8]  Timeline                  — Formation и Travaux académiques / chronologie
+   [9]  Compétences               — навыки, инструменты, языки / compétences, outils, langues
+   [10] Cards                     — Projets и Centres d'intérêt / cartes
+   [11] Contact + CV              — иконки, e-mail, CV / icônes, e-mail, CV
+   [12] Footer                    — подвал / pied de page
+   [13] Responsive                — планшет и телефон / tablette et téléphone
+   [14] Accessibilité             — «уменьшить анимацию», устройства без мыши / mouvement réduit, appareils sans souris
+*/
+
+
+/* ==========================================================================
+   [1] VARIABLES / ПЕРЕМЕННЫЕ
+   ========================================================================== */
+
+/*
+  RU: ГЛАВНОЕ МЕСТО ДЛЯ ИЗМЕНЕНИЯ ЦВЕТОВ И РАЗМЕРОВ. Поменяйте значение здесь —
+      и оно изменится на всём сайте. Пример: --color-accent — основной голубой цвет сайта.
+  FR : L'ENDROIT PRINCIPAL POUR CHANGER COULEURS ET TAILLES. Modifiez une valeur ici
+      et elle change sur tout le site. Exemple : --color-accent est le bleu principal du site.
+*/
+:root {
+  /* RU: Цвета фона / FR : Couleurs de fond */
+  --color-bg: #05060c;
+  --color-bg-alt: #070a14;
+
+  /* RU: Цвета текста / FR : Couleurs du texte */
+  --color-text: #eaeaea;          /* основной / principal */
+  --color-text-soft: #cbd5e1;     /* абзацы, меню / paragraphes, menu */
+  --color-text-muted: #94a3b8;    /* второстепенный текст / texte secondaire */
+  --color-heading: #f1f5f9;       /* заголовки карточек / titres des cartes */
+  --color-heading-soft: #e2e8f0;  /* заголовки секций / titres des sections */
+
+  /* RU: Акцентные цвета (голубой) и зелёный статус / FR : Couleurs d'accent (bleu) et vert de statut */
+  --color-accent: #7dd3fc;        /* основной акцент / accent principal */
+  --color-accent-light: #b8ecff;  /* акцент при наведении / accent au survol */
+  --color-success: #34d399;       /* «Disponible», «Email copié» */
+  --color-on-accent: #07111f;     /* текст на голубой кнопке / texte sur bouton bleu */
+
+  /* RU: «Стеклянные» карточки: фон, рамка, рамка при наведении, тень при наведении
+     FR : Cartes « en verre » : fond, bordure, bordure au survol, ombre au survol */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(125, 211, 252, 0.12);
+  --glass-border-hover: rgba(125, 211, 252, 0.3);
+  --shadow-hover: 0 10px 30px rgba(34, 211, 238, 0.08);
+  --shadow-hover-strong: 0 10px 30px rgba(34, 211, 238, 0.12);
+  --tag-border: rgba(125, 211, 252, 0.25);
+  --blur-glass: blur(12px);
+
+  /* RU: Скругления углов / FR : Arrondis des coins */
+  --radius-button: 10px;
+  --radius-small: 14px;
+  --radius-card: 18px;
+  --radius-large: 24px;
+
+  /* RU: Отступы секций (в media-запросе внизу на телефоне --section-padding-x меняется на 8%)
+     FR : Espacements des sections (sur téléphone, --section-padding-x passe à 8% dans les media queries en bas) */
+  --section-padding-y: 100px;
+  --section-padding-x: 10%;
+
+  /* RU: Шрифты и скорость переходов / FR : Polices et vitesse des transitions */
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-mono: "Courier New", monospace;
+  --transition: 0.3s ease;
+}
+
+
+/* ==========================================================================
+   [2] BASE / БАЗОВЫЕ СТИЛИ
+   ========================================================================== */
+
+/*
+  RU: Сброс отступов у всех элементов, чтобы браузер не добавлял свои.
+  FR : Remise à zéro des marges de tous les éléments pour ne pas subir celles du navigateur.
+*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =========================
-   GLOBAL
-========================= */
-
+/* RU: Плавная прокрутка по якорям (клик по пункту меню). FR : Défilement doux vers les ancres (clic dans le menu). */
 html {
   scroll-behavior: smooth;
 }
 
+/*
+  RU: Тёмный фон всей страницы с медленно «перетекающим» градиентом.
+      ЕСЛИ САЙТ ТОРМОЗИТ на слабом устройстве — закомментируйте строку «animation» ниже.
+  FR : Fond sombre de toute la page avec un dégradé qui « coule » lentement.
+      SI LE SITE RAME sur un appareil faible, mettez la ligne « animation » ci-dessous en commentaire.
+*/
 body {
-  font-family: 'Inter', sans-serif;
-  color: #eaeaea;
+  font-family: var(--font-main);
+  color: var(--color-text);
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: hidden; /* RU: страховка от горизонтальной прокрутки / FR : garde-fou contre le défilement horizontal */
 
-  /* 🌑 глубокий тёмный фон с мягкой живой глубиной */
   background:
-    radial-gradient(circle at 20% 30%,
-      rgba(90, 140, 255, 0.06),
-      transparent 40%),
-
-    radial-gradient(circle at 80% 70%,
-      rgba(120, 255, 214, 0.05),
-      transparent 45%),
-
-    radial-gradient(circle at 50% 50%,
-      #05060c 0%,
-      #070a14 45%,
-      #05060c 100%);
-
+    radial-gradient(circle at 20% 30%, rgba(90, 140, 255, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(120, 255, 214, 0.05), transparent 45%),
+    radial-gradient(circle at 50% 50%, var(--color-bg) 0%, var(--color-bg-alt) 45%, var(--color-bg) 100%);
   background-size: 200% 200%;
   animation: deepFlow 14s ease-in-out infinite;
 }
 
-/* 🌫 очень медленное “перетекание” фона без полос */
-@keyframes deepFlow {
-  0% {
-    background-position: 0% 50%, 100% 50%, 50% 50%;
-  }
-  25% {
-    background-position: 20% 60%, 80% 40%, 50% 50%;
-  }
-  50% {
-    background-position: 50% 40%, 50% 60%, 50% 50%;
-  }
-  75% {
-    background-position: 80% 55%, 20% 45%, 50% 50%;
-  }
-  100% {
-    background-position: 0% 50%, 100% 50%, 50% 50%;
-  }
+/* RU: Изображения не выходят за края и не искажаются (пригодится для будущих фото). FR : Les images ne dépassent pas et ne se déforment pas (utile pour de futures photos). */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-/* 🌑 мягкие “световые облака”, но без кругов */
+/* RU: Убираем маркеры у всех списков (где нужны — возвращаем отдельно). FR : Pas de puces par défaut (rétablies au cas par cas). */
+ul {
+  list-style: none;
+}
+
+/*
+  RU: Видимая рамка вокруг элемента при навигации клавиатурой (Tab). Для мыши не показывается.
+  FR : Contour visible autour de l'élément lors de la navigation au clavier (Tab). Non affiché à la souris.
+*/
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/*
+  RU: Ссылка «Aller au contenu»: спрятана за экраном, появляется при фокусе (Tab).
+  FR : Lien « Aller au contenu » : caché hors écran, il apparaît au focus (Tab).
+*/
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-button);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+
+/* ==========================================================================
+   [3] DÉCOR D'ARRIÈRE-PLAN / ФОНОВЫЕ ЭФФЕКТЫ
+   ========================================================================== */
+
+/*
+  RU: Два больших размытых световых пятна (голубое и зелёное), медленно плывущих по экрану.
+      Чисто декоративные; за них отвечают body::before (левое) и body::after (правое).
+  FR : Deux grands halos lumineux flous (bleu et vert) qui flottent lentement à l'écran.
+      Purement décoratifs ; body::before (gauche) et body::after (droite).
+*/
 body::before,
 body::after {
   content: "";
@@ -70,31 +184,61 @@ body::after {
   border-radius: 50%;
   pointer-events: none;
   z-index: -1;
-
   filter: blur(120px);
   opacity: 0.12;
   mix-blend-mode: screen;
 }
 
-/* 🌊 левый свет — уходит и появляется в новых местах */
 body::before {
-  background: radial-gradient(circle,
-    rgba(120, 170, 255, 0.25),
-    transparent 60%);
-
+  background: radial-gradient(circle, rgba(120, 170, 255, 0.25), transparent 60%);
   animation: floatA 18s ease-in-out infinite;
 }
 
-/* 🌿 правый свет — противоположное движение */
 body::after {
-  background: radial-gradient(circle,
-    rgba(120, 255, 214, 0.20),
-    transparent 60%);
-
+  background: radial-gradient(circle, rgba(120, 255, 214, 0.20), transparent 60%);
   animation: floatB 22s ease-in-out infinite;
 }
 
-/* 🔄 движение по всему экрану (без статичных “пятен”) */
+/*
+  RU: Свечение, следующее за курсором. Позицию задаёт JavaScript (js/script.js → Cursor glow),
+      здесь — только внешний вид. Скрыто, пока мышь не двигалась, и на сенсорных экранах ([14]).
+  FR : Halo qui suit le curseur. La position est gérée par JavaScript (js/script.js → Cursor glow),
+      ici seulement l'apparence. Caché tant que la souris n'a pas bougé, et sur écrans tactiles ([14]).
+*/
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.12) 0%,
+    rgba(16, 185, 129, 0.08) 30%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+
+.cursor-glow.is-active {
+  opacity: 1;
+}
+
+/* RU: Анимации фона. FR : Animations du fond. */
+@keyframes deepFlow {
+  0%   { background-position: 0% 50%, 100% 50%, 50% 50%; }
+  25%  { background-position: 20% 60%, 80% 40%, 50% 50%; }
+  50%  { background-position: 50% 40%, 50% 60%, 50% 50%; }
+  75%  { background-position: 80% 55%, 20% 45%, 50% 50%; }
+  100% { background-position: 0% 50%, 100% 50%, 50% 50%; }
+}
+
 @keyframes floatA {
   0%   { transform: translate(-20%, -10%); }
   25%  { transform: translate(30%, 20%); }
@@ -112,1279 +256,1041 @@ body::after {
 }
 
 
-/* =========================
-   CURSOR GLOW
-========================= */
-
-.cursor-glow {
-  position: fixed;
-
-  width: 400px;
-  height: 400px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(34, 211, 238, 0.12) 0%,
-      rgba(16, 185, 129, 0.08) 30%,
-      transparent 70%
-    );
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  transform: translate(-50%, -50%);
-
-  z-index: 0;
-
-  filter: blur(50px);
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-
-  backdrop-filter: blur(14px);
-
-  background: rgba(7, 10, 20, 0.55);
-
-  border-bottom:
-    1px solid rgba(255,255,255,0.05);
-
-  z-index: 1000;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-.nav {
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px 8%;
-}
-
-.nav__logo a {
-
-  font-family:
-    "Courier New", monospace;
-
-  font-size: 24px;
-
-  font-weight: 800;
-
-  letter-spacing: 2px;
-
-  color:
-    rgba(125,211,252,0.95);
-
-  text-decoration: none;
-
-  transition: 0.35s ease;
-}
-
-.nav__logo a:hover {
-
-  color: #b8ecff;
-
-  text-shadow:
-    0 0 10px rgba(125,211,252,0.8),
-    0 0 25px rgba(125,211,252,0.45),
-    0 0 45px rgba(125,211,252,0.2);
-}
-
-/* glow */
-
-.nav__logo a:hover {
-
-  color: #b8ecff;
-
-  text-shadow:
-    0 0 10px rgba(125,211,252,0.8),
-    0 0 25px rgba(125,211,252,0.45),
-    0 0 45px rgba(125,211,252,0.2);
-}
-
-.nav__links {
-  display: flex;
-  gap: 25px;
-
-  list-style: none;
-}
-
-.nav__links a {
-  color: #cbd5e1;
-
-  text-decoration: none;
-
-  font-size: 14px;
-
-  transition: 0.3s ease;
-}
-
-.nav__links a:hover {
-  color: #7dd3fc;
-}
-
-.nav__links a.active {
-
-  color: #7dd3fc;
-
-  text-shadow:
-    0 0 12px rgba(125,211,252,0.35);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  padding-top: 100px; /* важно из-за fixed header */
-  box-sizing: border-box;
-}
-
-.hero__content {
-  max-width: 700px;
-    align-items: center;
-    justify-content: center;
-    animation: floatHero 6s ease-in-out infinite;
-}
-@keyframes floatHero {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.hero__availability {
-  color: #34d399;
-
-  font-size: 14px;
-
-  margin-bottom: 12px;
-}
-
-.hero__title {
-  font-size: 72px;
-
-  font-weight: 700;
-
-  line-height: 1.05;
-}
-
-.hero__lastname {
-  color: #7dd3fc;
-}
-
-.hero__subtitle {
-  margin-top: 18px;
-
-  font-size: 20px;
-
-  color: #94a3b8;
-
-  margin-bottom: 30px;
-}
-
-/* =========================
-   TECH STACK SLIDER
-========================= */
-
-.tech-slider {
-
-  width: 100%;
-
-  max-width: 520px;
-
-  margin: 35px auto 0;
-
-  overflow: hidden;
-
-  position: relative;
-
-  padding: 14px 0;
-
-  /* smooth dissolve left/right */
-
-  mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      black 15%,
-      black 85%,
-      transparent 100%
-    );
-
-  -webkit-mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      black 15%,
-      black 85%,
-      transparent 100%
-    );
-}
-
-/* moving track */
-
-.tech-slider__track {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 55px;
-
-  width: max-content;
-
-  animation:
-    techScroll 18s linear infinite;
-}
-
-/* pause animation on hover */
-
-.tech-slider:hover .tech-slider__track {
-
-  animation-play-state: paused;
-}
-
-/* tech item */
-
-.tech-item {
-
-  width: 70px;
-  height: 70px;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  flex-shrink: 0;
-
-  transition:
-    transform 0.35s ease,
-    filter 0.35s ease;
-
-  animation:
-    floatIcon 3.5s ease-in-out infinite;
-}
-
-/* different timing */
-
-.tech-item:nth-child(even) {
-
-  animation-delay: 1.5s;
-}
-
-/* icons */
-
-.tech-item i {
-
-  font-size: 42px;
-
-  color: #7dd3fc;
-
-  opacity: 0.92;
-
-  transition:
-    transform 0.35s ease,
-    color 0.35s ease,
-    text-shadow 0.35s ease;
-}
-
-/* hover */
-
-.tech-item:hover {
-
-  transform:
-    translateY(-5px)
-    scale(1.08);
-}
-
-.tech-item:hover i {
-
-  color: #b8ecff;
-
-  text-shadow:
-    0 0 22px rgba(125,211,252,0.55);
-}
-
-/* horizontal scroll */
-
-@keyframes techScroll {
-
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* floating animation */
-
-@keyframes floatIcon {
-
-  0%, 100% {
-
-    transform: translateY(0px);
-  }
-
-  50% {
-
-    transform: translateY(-4px);
-  }
-}
-
-
-
-/* animation */
-
-@keyframes techScroll {
-
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-/* =========================
-   TYPEWRITER
-========================= */
-
-.hero__code {
-
-  min-height: 24px;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  color: #7dd3fc;
-
-  font-family: "Courier New", monospace;
-
-  font-size: 15px;
-
-  letter-spacing: 1px;
-
-  opacity: 0.9;
-}
-
-.typing-cursor {
-
-  display: inline-block;
-
-  margin-left: 2px;
-
-  animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-
-  50% {
-    opacity: 0;
-  }
-}
-
-
-.hero__description {
-  margin-top: 25px;
-
-  color: #cbd5e1;
-
-  max-width: 620px;
-
-  font-size: 16px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.hero__buttons {
-  margin-top: 35px;
-
-  display: flex;
-  gap: 16px;
-   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
+/* ==========================================================================
+   [4] COMPOSANTS COMMUNS / ОБЩИЕ КОМПОНЕНТЫ
+   ========================================================================== */
+
+/*
+  RU: КНОПКИ. .btn — заполненная голубая кнопка, .btn--secondary — контурная (добавляется вторым классом).
+      Пример в HTML: <a class="btn btn--secondary">.
+  FR : BOUTONS. .btn est le bouton bleu plein, .btn--secondary la version contour (ajoutée comme 2e classe).
+      Exemple en HTML : <a class="btn btn--secondary">.
+*/
 .btn {
   padding: 12px 22px;
-
-  background: #7dd3fc;
-
-  color: #07111f;
-
+  background: var(--color-accent);
+  color: var(--color-on-accent);
   text-decoration: none;
-
-  border-radius: 10px;
-
+  border-radius: var(--radius-button);
   font-weight: 600;
-
-  transition: 0.3s ease;
+  transition: var(--transition);
 }
 
 .btn:hover {
   transform: translateY(-3px);
-
-  box-shadow:
-    0 10px 30px rgba(34,211,238,0.15);
+  box-shadow: var(--shadow-hover-strong);
 }
 
 .btn--secondary {
   background: transparent;
-
-  border:
-    1px solid rgba(125, 211, 252, 0.35);
-
-  color: #7dd3fc;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  color: var(--color-accent);
 }
 
-/* =========================
-   SECTIONS
-========================= */
-/* =========================
-   PROFILE CARD
-========================= */
-
-.profile-card {
-
-  max-width: 900px;
-
-  margin: 0 auto;
-
-  background:
-    rgba(255,255,255,0.03);
-
-  border:
-    1px solid rgba(125,211,252,0.12);
-
-  border-radius: 20px;
-
-  padding: 35px;
-
-  backdrop-filter: blur(12px);
-
-  color: #cbd5e1;
-
-  line-height: 1.9;
-
-  text-align: justify;
-}
-
-.profile-card p {
-
-  margin-bottom: 18px;
-}
+/*
+  RU: СЕКЦИЯ — общий контейнер любого раздела (отступы сверху/снизу и по бокам берутся из [1]).
+      .section__title — заголовок раздела с градиентной линией под ним.
+  FR : SECTION — conteneur commun de chaque rubrique (espacements repris de [1]).
+      .section__title — titre de la rubrique avec une ligne en dégradé dessous.
+*/
 .section {
-
-  padding: 100px 10%;
+  padding: var(--section-padding-y) var(--section-padding-x);
 }
 
 .section__title {
   font-size: 32px;
   margin-bottom: 30px;
-  color: #e2e8f0;
-  position: relative;
+  color: var(--color-heading-soft);
   text-align: center;
 }
 
 .section__title::after {
   content: "";
   display: block;
-
   width: 95%;
   height: 2px;
-
-  margin-top: 10px;
-
-  background: linear-gradient(
-    to right,
-    transparent,
-    #7dd3fc,
-    transparent
-  );
+  margin: 10px auto 0;
+  background: linear-gradient(to right, transparent, var(--color-accent), transparent);
 }
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
+/*
+  RU: ПЛАВНОЕ ПОЯВЛЕНИЕ при прокрутке. Класс .reveal (в HTML) прячет блок, а JavaScript
+      добавляет .is-visible, когда блок попадает на экран (js/script.js → Scroll reveal).
+      Чтобы анимировать другую секцию — добавьте ей class="section reveal".
+  FR : APPARITION PROGRESSIVE au défilement. La classe .reveal (en HTML) cache le bloc et JavaScript
+      ajoute .is-visible quand il entre à l'écran (js/script.js → Scroll reveal).
+      Pour animer une autre section : ajoutez-lui class="section reveal".
+*/
 .reveal {
-
   opacity: 0;
-
   transform: translateY(40px);
-
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal.active {
-
+.reveal.is-visible {
   opacity: 1;
-
-  transform: translateY(0);
+  transform: none;
 }
 
-/* =========================
-   PROJECT GRID
-========================= */
-
-.projects {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(280px, 1fr));
-
-  gap: 25px;
+/*
+  RU: «СТЕКЛО» — общий вид всех карточек (полупрозрачный фон, тонкая рамка, размытие фона).
+      Форма и отступы каждой карточки заданы в её собственном разделе ниже.
+      Новая карточка с таким же видом? Просто добавьте её класс в этот список.
+  FR : « VERRE » — apparence commune de toutes les cartes (fond translucide, fine bordure, flou d'arrière-plan).
+      La forme et les espacements de chaque carte sont dans sa propre section plus bas.
+      Nouvelle carte du même style ? Ajoutez simplement sa classe à cette liste.
+*/
+.profile-card,
+.timeline__content,
+.skills-card,
+.card,
+.email-card,
+.contact-icons a {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
 }
 
-/* =========================
-   PROJECT CARD
-========================= */
-
-.project-card {
-
-  background:
-    rgba(255,255,255,0.03);
-
-  border:
-    1px solid rgba(125,211,252,0.12);
-
-  border-radius: 18px;
-
-  padding: 25px;
-
-  backdrop-filter: blur(12px);
-
-  position: relative;
-
-  overflow: hidden;
-
-  /* 3D */
-  transform-style: preserve-3d;
-
-  will-change: transform;
-
-  transition:
-    transform 0.15s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+/* RU: Общий вид карточек при наведении (рамка и тень). FR : Apparence commune des cartes au survol (bordure et ombre). */
+.timeline__content:hover,
+.skills-card:hover,
+.card:hover,
+.email-card:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-hover);
 }
 
-/* hover */
-
-.project-card:hover {
-
-  border-color:
-    rgba(125,211,252,0.35);
-
-  box-shadow:
-    0 10px 40px rgba(34,211,238,0.08);
-}
-.project-card__title {
-  font-size: 20px;
-
-  color: #f1f5f9;
-
-  margin-bottom: 12px;
-}
-
-.project-card__desc {
-  font-size: 14px;
-
-  color: #94a3b8;
-
-  margin-bottom: 18px;
-}
-
-.project-card__tags {
+/*
+  RU: ТЕГИ-«ТАБЛЕТКИ» (технологии). .tags — маленькие (в проектах), .tags--large — крупнее (в «Outils & Technologies»).
+      Пример: <ul class="tags"><li>C#</li><li>SQL</li></ul>
+  FR : ÉTIQUETTES « PILULES » (technologies). .tags = petites (projets), .tags--large = plus grandes (« Outils & Technologies »).
+      Exemple : <ul class="tags"><li>C#</li><li>SQL</li></ul>
+*/
+.tags {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 8px;
 }
 
-.project-card__tags span {
+.tags li {
   font-size: 11px;
-
   padding: 5px 10px;
-
   border-radius: 999px;
-
-  border:
-    1px solid rgba(125,211,252,0.25);
-
-  color: #7dd3fc;
+  border: 1px solid var(--tag-border);
+  color: var(--color-accent);
 }
 
-/* =========================
-   TIMELINE
-========================= */
-/* =========================
-   TIMELINE
-   Chronologie / Timeline
-========================= */
+.tags--large {
+  gap: 10px;
+}
 
+.tags--large li {
+  font-size: 13px;
+  padding: 8px 12px;
+}
+
+
+/* ==========================================================================
+   [5] HEADER + NAVIGATION / ШАПКА И МЕНЮ
+   ========================================================================== */
+
+/*
+  RU: Шапка: закреплена сверху, полупрозрачная, с размытием того, что под ней.
+  FR : En-tête : fixé en haut, semi-transparent, avec flou de ce qui passe dessous.
+*/
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(7, 10, 20, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  z-index: 1000;
+}
+
+/* RU: Внутри шапки: логотип слева, меню справа. FR : Dans l'en-tête : logo à gauche, menu à droite. */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+}
+
+.nav__logo {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav__logo:hover {
+  color: var(--color-accent-light);
+  text-shadow:
+    0 0 10px rgba(125, 211, 252, 0.8),
+    0 0 25px rgba(125, 211, 252, 0.45),
+    0 0 45px rgba(125, 211, 252, 0.2);
+}
+
+/* RU: Ссылки меню (на компьютере — в строку). FR : Liens du menu (en ligne sur ordinateur). */
+.nav__links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav__links a {
+  color: var(--color-text-soft);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.nav__links a:hover {
+  color: var(--color-accent);
+}
+
+/* RU: Пункт меню текущей секции (класс ставит JS: js/script.js → Active navigation). FR : Élément du menu de la section actuelle (classe posée par le JS : js/script.js → Active navigation). */
+.nav__links a.is-active {
+  color: var(--color-accent);
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.35);
+}
+
+/*
+  RU: Кнопка-бургер мобильного меню. На компьютере скрыта, показывается только на узких экранах ([13]).
+      Три полоски превращаются в крестик, когда меню открыто (aria-expanded="true").
+  FR : Bouton burger du menu mobile. Caché sur ordinateur, affiché seulement sur écrans étroits ([13]).
+      Les trois barres deviennent une croix quand le menu est ouvert (aria-expanded="true").
+*/
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+}
+
+.nav__toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==========================================================================
+   [6] HERO / ГЛАВНЫЙ ЭКРАН
+   ========================================================================== */
+
+/*
+  RU: Первый экран на всю высоту окна. Отступ сверху (100px) нужен, чтобы контент не прятался под шапкой.
+  FR : Premier écran sur toute la hauteur de la fenêtre. La marge du haut (100px) évite que le contenu passe sous l'en-tête.
+*/
+.hero {
+  min-height: 100vh;
+  min-height: 100svh; /* RU: точная высота на телефонах / FR : hauteur exacte sur téléphone */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 8% 0;
+}
+
+/*
+  RU: Колонка с текстом главного экрана; слегка «парит» вверх-вниз.
+      min-width: 0 ВАЖНО: без него колонка не сужалась меньше 520px (ширина ленты технологий)
+      и на телефонах текст обрезался по краям экрана.
+  FR : Colonne de texte de l'accueil ; elle « flotte » légèrement.
+      min-width: 0 est IMPORTANT : sans lui, la colonne ne devenait jamais plus étroite que 520px
+      (largeur du bandeau des technologies) et sur téléphone le texte était coupé sur les bords.
+*/
+.hero__content {
+  max-width: 700px;
+  min-width: 0;
+  animation: floatHero 6s ease-in-out infinite;
+}
+
+@keyframes floatHero {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+.hero__availability {
+  color: var(--color-success);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* RU: Имя (белое) и фамилия (голубая, на новой строке). FR : Prénom (blanc) et nom (bleu, à la ligne). */
+.hero__title {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.hero__lastname {
+  display: block;
+  color: var(--color-accent);
+}
+
+.hero__subtitle {
+  margin-top: 18px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: var(--color-text-muted);
+}
+
+/*
+  RU: TECH SLIDER — бегущая лента иконок. Края плавно исчезают (mask-image).
+      .tech-slider__track — движущаяся дорожка, animation techScroll едет влево на половину её длины
+      (вторая половина — копия иконок, создаёт JS), поэтому прокрутка выглядит бесконечной.
+      Расстояние между иконками — margin-right у .tech-item (важно: не gap, иначе будет «скачок»).
+      Скорость: 18s → больше секунд = медленнее.
+  FR : TECH SLIDER — bandeau défilant d'icônes. Les bords s'estompent (mask-image).
+      .tech-slider__track est la piste mobile ; techScroll la déplace vers la gauche de la moitié de sa longueur
+      (la 2e moitié est une copie des icônes, créée par le JS), le défilement paraît donc infini.
+      L'espace entre icônes = margin-right de .tech-item (important : pas de gap, sinon un « saut » apparaît).
+      Vitesse : 18s → plus de secondes = plus lent.
+*/
+.tech-slider {
+  width: 100%;
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.tech-slider__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: techScroll 18s linear infinite;
+}
+
+/* RU: При наведении мыши лента останавливается. FR : La souris sur le bandeau le met en pause. */
+.tech-slider:hover .tech-slider__track {
+  animation-play-state: paused;
+}
+
+.tech-item {
+  width: 70px;
+  height: 70px;
+  margin-right: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  animation: floatIcon 3.5s ease-in-out infinite;
+}
+
+/* RU: Каждая вторая иконка «покачивается» с задержкой. FR : Une icône sur deux « oscille » avec un décalage. */
+.tech-item:nth-child(even) {
+  animation-delay: 1.5s;
+}
+
+.tech-item i {
+  font-size: 42px;
+  color: var(--color-accent);
+  opacity: 0.92;
+  transition: transform 0.35s ease, color 0.35s ease, text-shadow 0.35s ease;
+}
+
+.tech-item:hover i {
+  transform: translateY(-5px) scale(1.08);
+  color: var(--color-accent-light);
+  text-shadow: 0 0 22px rgba(125, 211, 252, 0.55);
+}
+
+@keyframes techScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/*
+  RU: «Печатающийся» текст. Печать делает JS (js/script.js → Typewriter), а мигающий курсор «|»
+      появляется после окончания печати (класс hero__code--done).
+  FR : Texte « tapé ». La frappe est faite par le JS (js/script.js → Typewriter) et le curseur clignotant « | »
+      apparaît à la fin (classe hero__code--done).
+*/
+.hero__code {
+  min-height: 24px;
+  margin-top: 19px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.hero__code--done::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero__description {
+  max-width: 620px;
+  margin: 25px auto 0;
+  font-size: 16px;
+  color: var(--color-text-soft);
+}
+
+.hero__buttons {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+
+/* ==========================================================================
+   [7] PROFIL / О СЕБЕ
+   ========================================================================== */
+
+/*
+  RU: Карточка с текстом «Profil». Ширина ограничена 900px и центрируется.
+  FR : Carte de texte « Profil ». Largeur limitée à 900px et centrée.
+*/
+.profile-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 35px;
+  border-radius: var(--radius-card);
+  color: var(--color-text-soft);
+  line-height: 1.9;
+  text-align: justify;
+}
+
+.profile-card p {
+  margin-bottom: 18px;
+}
+
+/*
+  RU: ЗАГОТОВКА для будущего фото (в HTML строка <img> закомментирована). Пока не используется.
+  FR : PRÉPARATION pour la future photo (la ligne <img> est en commentaire en HTML). Pas encore utilisée.
+*/
+.profile-card__photo {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 24px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border-hover);
+}
+
+
+/* ==========================================================================
+   [8] TIMELINE / ХРОНОЛОГИЯ (Formation и Travaux académiques)
+   ========================================================================== */
+
+/*
+  RU: Хронология: вертикальная линия слева, у каждой записи — точка на линии, дата и карточка.
+      --timeline-axis — расстояние линии от левого края (менять здесь).
+  FR : Chronologie : ligne verticale à gauche ; chaque entrée a un point sur la ligne, une date et une carte.
+      --timeline-axis — distance de la ligne au bord gauche (à modifier ici).
+*/
 .timeline {
-
-  /* position de la ligne verticale */
-  /* положение вертикальной линии */
   --timeline-axis: 22px;
 
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   gap: 35px;
-
   margin-top: 40px;
 }
 
-/* ligne verticale */
-/* вертикальная линия */
-
+/* RU: Сама вертикальная линия. FR : La ligne verticale elle-même. */
 .timeline::before {
-
   content: "";
-
   position: absolute;
-
   left: var(--timeline-axis);
-
   top: 0;
   bottom: 0;
-
   width: 2px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(125,211,252,0.1),
-      rgba(125,211,252,0.5),
-      rgba(125,211,252,0.1)
-    );
+  background: linear-gradient(
+    to bottom,
+    rgba(125, 211, 252, 0.1),
+    rgba(125, 211, 252, 0.5),
+    rgba(125, 211, 252, 0.1)
+  );
 }
 
-/* item */
-
+/* RU: Одна запись: слева дата (140px), справа карточка. FR : Une entrée : date à gauche (140px), carte à droite. */
 .timeline__item {
-
   position: relative;
-
   display: grid;
-
   grid-template-columns: 140px 1fr;
-
   gap: 35px;
-
   padding-left: 70px;
 }
 
-/* point */
-/* точка */
-
+/* RU: Точка на линии. FR : Point sur la ligne. */
 .timeline__item::before {
-
   content: "";
-
   position: absolute;
-
   left: calc(var(--timeline-axis) - 7px);
-
-  top: 0px;
-
+  top: 0;
   width: 12px;
   height: 12px;
-
   border-radius: 50%;
-
-  background: #7dd3fc;
-
-  border: 3px solid #05060c;
-
+  background: var(--color-accent);
+  border: 3px solid var(--color-bg);
   box-shadow:
-    0 0 0 4px rgba(125,211,252,0.08),
-    0 0 18px rgba(125,211,252,0.45);
-
+    0 0 0 4px rgba(125, 211, 252, 0.08),
+    0 0 18px rgba(125, 211, 252, 0.45);
   z-index: 2;
-
-  transition: 0.3s ease;
+  transition: var(--transition);
 }
-
-/* hover effect */
 
 .timeline__item:hover::before {
-
   transform: scale(1.15);
-
   box-shadow:
-    0 0 0 6px rgba(125,211,252,0.12),
-    0 0 25px rgba(125,211,252,0.7);
+    0 0 0 6px rgba(125, 211, 252, 0.12),
+    0 0 25px rgba(125, 211, 252, 0.7);
 }
-
-/* date */
 
 .timeline__date {
-
-  color: #7dd3fc;
-
-  font-weight: 700;
-
-  font-size: 14px;
-
   padding-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-accent);
 }
 
-/* content */
-
 .timeline__content {
-
-  background: rgba(255,255,255,0.03);
-
-  border: 1px solid rgba(125,211,252,0.12);
-
-  border-radius: 18px;
-
   padding: 24px;
-
-  backdrop-filter: blur(10px);
-
-  transition: 0.3s ease;
+  border-radius: var(--radius-card);
+  transition: var(--transition);
 }
 
 .timeline__content:hover {
-
   transform: translateY(-3px);
-
-  border-color:
-    rgba(125,211,252,0.28);
-
-  box-shadow:
-    0 10px 30px rgba(34,211,238,0.08);
 }
 
 .timeline__content h3 {
-
-  color: #f1f5f9;
-
   margin-bottom: 8px;
-
   font-size: 18px;
+  color: var(--color-heading);
 }
 
 .timeline__place {
-
-  color: #94a3b8;
-
-  font-size: 14px;
-
   margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--color-text-muted);
 }
 
 .timeline__text {
-
-  color: #cbd5e1;
-
   font-size: 14px;
-
   line-height: 1.8;
+  color: var(--color-text-soft);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-  .timeline__item {
-
-    grid-template-columns: 1fr;
-
-    gap: 14px;
-  }
-
-  .timeline__date {
-
-    font-size: 13px;
-  }
+/* RU: Пустая строка между абзацами внутри карточки. FR : Ligne vide entre les paragraphes d'une carte. */
+.timeline__text + .timeline__text {
+  margin-top: 1.8em;
 }
 
-/* =========================
-   CONTACT ICONS
-========================= */
-/* контейнер — центрируем */
-.contact-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 35px;        /* расстояние между иконками */
-  margin-top: 40px;
+/* RU: Список с маркерами внутри карточки (например, в «DU Passerelle»). FR : Liste à puces dans une carte (par ex. « DU Passerelle »). */
+.timeline__list {
+  list-style: disc;
+  padding-left: 18px;
 }
 
-/* сами иконки */
-.contact-icons a {
-  font-size: 42px;  /*  размер иконок (главное) */
-  color: #7dd3fc;
 
-  transition: all 0.3s ease;
-}
-
-/* hover эффект */
-.contact-icons a:hover {
-  color: #22d3ee;
-  transform: scale(1.2);
-}
-
-#contact {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 1s ease;
-  /* padding-bottom: 60px; */
-}
-
-#contact.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================
-   CONTACT SECTION
-========================= */
-
-#contact {
-
-  opacity: 0;
-
-  transform: translateY(60px);
-
-  transition: all 1s ease;
-}
-
-#contact.active {
-
-  opacity: 1;
-
-  transform: translateY(0);
-}
-
-/* =========================
-   SOCIAL ICONS
-========================= */
-
-.contact-icons {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 30px;
-
-  margin-top: 45px;
-}
-
-/* icon */
-
-.contact-icons a {
-
-  width: 68px;
-  height: 68px;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  border-radius: 18px;
-
-  background:
-    rgba(255,255,255,0.03);
-
-  border:
-    1px solid rgba(125,211,252,0.12);
-
-  color: #7dd3fc;
-
-  font-size: 34px;
-
-  text-decoration: none;
-
-  backdrop-filter: blur(10px);
-
-  transition: 0.35s ease;
-}
-
-/* hover */
-
-.contact-icons a:hover {
-
-  transform:
-    translateY(-5px)
-    scale(1.05);
-
-  border-color:
-    rgba(125,211,252,0.35);
-
-  color: #b8ecff;
-
-  box-shadow:
-    0 10px 30px rgba(34,211,238,0.12);
-}
-
-/* =========================
-   EMAIL CARD
-========================= */
-
-.email-card {
-
-  max-width: 460px;
-
-  margin: 40px auto 0;
-
-  padding: 30px;
-
-  border-radius: 24px;
-
-  background:
-    rgba(255,255,255,0.03);
-
-  border:
-    1px solid rgba(125,211,252,0.12);
-
-  backdrop-filter: blur(12px);
-
-  text-align: center;
-
-  transition: 0.35s ease;
-}
-
-/* hover */
-
-.email-card:hover {
-
-  border-color:
-    rgba(125,211,252,0.28);
-
-  box-shadow:
-    0 12px 35px rgba(34,211,238,0.08);
-}
-
-/* title */
-
-.email-card__title {
-
-  color: #94a3b8;
-
-  font-size: 14px;
-
-  letter-spacing: 1px;
-
-  margin-bottom: 22px;
-
-  text-transform: uppercase;
-}
-
-/* buttons wrapper */
-
-.email-card__actions {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 16px;
-
-  flex-wrap: wrap;
-}
-
-/* button */
-
-.email-btn {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  min-width: 150px;
-
-  padding: 13px 20px;
-
-  border-radius: 14px;
-
-  border:
-    1px solid rgba(125,211,252,0.18);
-
-  background:
-    rgba(255,255,255,0.03);
-
-  color: #7dd3fc;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  text-decoration: none;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(10px);
-
-  transition: 0.35s ease;
-}
-
-/* icons */
-
-.email-btn i {
-
-  font-size: 15px;
-}
-
-/* hover */
-
-.email-btn:hover {
-
-  transform:
-    translateY(-4px);
-
-  border-color:
-    rgba(125,211,252,0.4);
-
-  color: #b8ecff;
-
-  box-shadow:
-    0 10px 25px rgba(34,211,238,0.10);
-}
-
-/* =========================
-   COPY MESSAGE
-========================= */
-
-.copy-message {
-
-  margin-top: 18px;
-
-  color: #34d399;
-
-  font-size: 13px;
-
-  opacity: 0;
-
-  transform: translateY(8px);
-
-  transition: 0.35s ease;
-}
-
-.copy-message.show {
-
-  opacity: 1;
-
-  transform: translateY(0);
-}
-
-/* =========================
-   DOWNLOAD CV
-========================= */
-
-.telechargerCV {
-
-  display: flex;
-
-  justify-content: center;
-
-  margin-top: 42px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-  .email-card {
-
-    padding: 24px;
-  }
-
-  .email-card__actions {
-
-    flex-direction: column;
-  }
-
-  .email-btn {
-
-    width: 100%;
-  }
-
-  .contact-icons {
-
-    gap: 18px;
-  }
-
-  .contact-icons a {
-
-    width: 60px;
-    height: 60px;
-
-    font-size: 30px;
-  }
-}
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-  padding: 40px 10%;
-
-  text-align: center;
-
-  color: #94a3b8;
-
-  border-top:
-    1px solid rgba(255,255,255,0.05);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-  .hero__title {
-    font-size: 48px;
-  }
-
-  .nav__links {
-    display: none;
-  }
-
-  .section {
-    padding: 100px 8%;
-    position: relative;
-  }
-
-  .timeline__item {
-    margin-left: 40px;
-  }
-
-}
-/* =========================
-   SKILLS
-========================= */
-
+/* ==========================================================================
+   [9] COMPÉTENCES / НАВЫКИ
+   ========================================================================== */
+
+/*
+  RU: Сетка из карточек навыков: колонки сами подстраиваются под ширину экрана (минимум 300px на колонку).
+  FR : Grille de cartes de compétences : les colonnes s'adaptent à la largeur de l'écran (300px minimum par colonne).
+*/
 .skills-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(300px, 1fr));
-
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 25px;
 }
 
 .skills-card {
-  background:
-    rgba(255,255,255,0.03);
-
-  border:
-    1px solid rgba(125,211,252,0.12);
-
-  border-radius: 18px;
-
   padding: 25px;
-
-  backdrop-filter: blur(10px);
-
-  transition: 0.3s ease;
+  border-radius: var(--radius-card);
+  transition: var(--transition);
 }
 
 .skills-card:hover {
   transform: translateY(-5px);
-
-  border-color:
-    rgba(125,211,252,0.3);
-
-  box-shadow:
-    0 10px 30px rgba(34,211,238,0.08);
 }
 
 .skills-card h3 {
   margin-bottom: 25px;
-
-  color: #f1f5f9;
-
   font-size: 20px;
+  color: var(--color-heading);
+}
+
+/* RU: Строка «навык — уровень» и строка «язык — уровень». FR : Ligne « compétence — niveau » et ligne « langue — niveau ». */
+.skill,
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-text-soft);
 }
 
 .skill {
-  display: flex;
-
-  justify-content: space-between;
-
   margin-bottom: 15px;
-
-  color: #cbd5e1;
-}
-
-.tools {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-}
-
-.tools span {
-  padding: 8px 12px;
-
-  border-radius: 999px;
-
-  border:
-    1px solid rgba(125,211,252,0.2);
-
-  color: #7dd3fc;
-
-  font-size: 13px;
 }
 
 .language-item {
-  display: flex;
-
-  justify-content: space-between;
-
   margin-bottom: 20px;
+}
 
-  color: #cbd5e1;
+/*
+  RU: Название языка не переносится (флаг остаётся рядом с названием), а длинный уровень
+      («C2 · Langue maternelle») при переносе выравнивается по правому краю.
+  FR : Le nom de la langue ne passe pas à la ligne (le drapeau reste à côté), et un niveau long
+      (« C2 · Langue maternelle ») reste aligné à droite s'il passe à la ligne.
+*/
+.language-item span {
+  white-space: nowrap;
+}
+
+.language-item strong {
+  text-align: right;
+}
+
+
+/* ==========================================================================
+   [10] CARDS / КАРТОЧКИ (Projets и Centres d'intérêt)
+   ========================================================================== */
+
+/*
+  RU: Сетка карточек (минимум 280px на колонку). Используется и для проектов, и для интересов.
+  FR : Grille de cartes (280px minimum par colonne). Utilisée pour les projets et pour les centres d'intérêt.
+*/
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 25px;
+}
+
+/*
+  RU: Карточка (проект или интерес). Лёгкий наклон под мышью делает JS (js/script.js → Card tilt),
+      поэтому transition для transform короткий (0.15s).
+  FR : Carte (projet ou centre d'intérêt). L'inclinaison sous la souris est faite par le JS (js/script.js → Card tilt),
+      d'où la transition courte (0.15s) sur transform.
+*/
+.card {
+  position: relative;
+  padding: 25px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  will-change: transform;
+  transition: transform 0.15s ease, border-color var(--transition), box-shadow var(--transition);
+}
+
+.card__title {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: var(--color-heading);
+}
+
+.card__desc {
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/*
+  RU: ЗАГОТОВКИ для изображения и ссылки проекта (в HTML они закомментированы). Пока не используются.
+  FR : PRÉPARATIONS pour l'image et le lien d'un projet (en commentaire dans le HTML). Pas encore utilisées.
+*/
+.card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 16px;
+  object-fit: cover;
+  border-radius: var(--radius-small);
+}
+
+.card__link {
+  display: inline-block;
+  margin-top: 14px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.card__link:hover {
+  color: var(--color-accent-light);
+}
+
+
+/* ==========================================================================
+   [11] CONTACT + CV / КОНТАКТЫ И РЕЗЮМЕ
+   ========================================================================== */
+
+/* RU: Ряд квадратных иконок соцсетей. FR : Rangée d'icônes carrées des réseaux. */
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 45px;
+}
+
+.contact-icons a {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-card);
+  color: var(--color-accent);
+  font-size: 34px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.contact-icons a:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--glass-border-hover);
+  color: var(--color-accent-light);
+  box-shadow: var(--shadow-hover-strong);
+}
+
+/* RU: Карточка с e-mail и двумя кнопками. FR : Carte e-mail avec deux boutons. */
+.email-card {
+  max-width: 460px;
+  margin: 40px auto 0;
+  padding: 30px;
+  border-radius: var(--radius-large);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.email-card__title {
+  margin-bottom: 22px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere; /* RU: длинный адрес не вылезает на телефоне / FR : une longue adresse ne déborde pas sur téléphone */
+}
+
+.email-card__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/*
+  RU: Кнопки «Écrire» (ссылка) и «Copier» (button). font-family: inherit нужен, чтобы <button>
+      выглядела так же, как ссылка (по умолчанию браузер даёт кнопкам свой шрифт).
+  FR : Boutons « Écrire » (lien) et « Copier » (button). font-family: inherit permet au <button>
+      d'avoir la même police que le lien (par défaut le navigateur applique sa propre police aux boutons).
+*/
+.email-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 150px;
+  padding: 13px 20px;
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-radius: var(--radius-small);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  color: var(--color-accent);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.email-btn i {
+  font-size: 15px;
+}
+
+.email-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--glass-border-hover);
+  color: var(--color-accent-light);
+  box-shadow: var(--shadow-hover-strong);
+}
+
+/*
+  RU: Сообщение «Email copié ✓»: невидимо, пока JS не добавит класс is-visible.
+      min-height резервирует место, чтобы карточка не «прыгала».
+  FR : Message « Email copié ✓ » : invisible tant que le JS n'ajoute pas la classe is-visible.
+      min-height réserve la place pour que la carte ne « saute » pas.
+*/
+.copy-message {
+  min-height: 16px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--color-success);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: var(--transition);
+}
+
+.copy-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RU: Блок с кнопкой «Télécharger CV». FR : Bloc du bouton « Télécharger CV ». */
+.contact__cv {
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
+}
+
+
+/* ==========================================================================
+   [12] FOOTER / ПОДВАЛ
+   ========================================================================== */
+
+.footer {
+  padding: 40px 10%;
+  text-align: center;
+  color: var(--color-text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer p + p {
+  margin-top: 1.2em;
+}
+
+
+/* ==========================================================================
+   [13] RESPONSIVE / АДАПТИВНОСТЬ
+   ========================================================================== */
+
+/*
+  RU: Стили для планшетов и телефонов. Пороги ширины экрана: 900px, 768px, 600px и 480px (самые узкие телефоны).
+      Если экран уже порога — правила из этого блока начинают действовать поверх обычных.
+  FR : Styles pour tablettes et téléphones. Seuils de largeur : 900px, 768px, 600px et 480px (téléphones les plus étroits).
+      Quand l'écran est plus étroit que le seuil, les règles du bloc s'appliquent par-dessus les règles normales.
+*/
+
+/* --- ≤ 900px : планшет и телефон / tablette et téléphone --- */
+@media (max-width: 900px) {
+
+  /* RU: Отступы секций по бокам уменьшаются. FR : Les marges latérales des sections diminuent. */
+  :root {
+    --section-padding-x: 8%;
+  }
+
+  /*
+    RU: Меню: ссылки прячутся и выпадают вниз по клику на бургер (класс is-open ставит JS: js/script.js → Mobile menu).
+    FR : Menu : les liens sont masqués et se déroulent au clic sur le burger (classe is-open posée par le JS : js/script.js → Mobile menu).
+  */
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 8% 16px;
+    background: rgba(7, 10, 20, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav__links.is-open {
+    display: flex;
+  }
+
+  .nav__links a {
+    display: block;
+    padding: 12px 0;
+    font-size: 16px;
+  }
+
+  /* RU: Имя меньше, но не менее 36px (чтобы «PORUCHNIK» помещалось на узких экранах). FR : Nom plus petit mais jamais sous 36px (pour que « PORUCHNIK » tienne sur écrans étroits). */
+  .hero__title {
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .footer {
+    padding: 40px 8%;
+  }
+}
+
+/* --- ≤ 768px : хронология в одну колонку / chronologie sur une colonne --- */
+@media (max-width: 768px) {
+
+  /* RU: Дата над карточкой, а не слева; левый отступ меньше. FR : Date au-dessus de la carte (et non à gauche) ; marge gauche réduite. */
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-left: 50px;
+  }
+
+  .timeline__date {
+    font-size: 13px;
+  }
+}
+
+/* --- ≤ 600px : телефон / téléphone --- */
+@media (max-width: 600px) {
+
+  /* RU: На узком экране выравнивание «по ширине» даёт огромные пробелы между словами — ставим по левому краю. FR : Sur écran étroit, le texte justifié crée de grands espaces entre les mots — on aligne à gauche. */
+  .profile-card {
+    padding: 24px;
+    text-align: left;
+  }
+
+  .email-card {
+    padding: 24px;
+  }
+
+  /* RU: Кнопки e-mail друг под другом на всю ширину. FR : Boutons e-mail l'un sous l'autre, pleine largeur. */
+  .email-card__actions {
+    flex-direction: column;
+  }
+
+  .email-btn {
+    width: 100%;
+  }
+
+  .contact-icons {
+    gap: 18px;
+  }
+
+  .contact-icons a {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+}
+
+/* --- ≤ 480px: самые узкие телефоны / téléphones les plus étroits --- */
+@media (max-width: 480px) {
+
+  /* RU: Печатающийся текст чуть мельче, чтобы не обрезался. FR : Texte tapé un peu plus petit pour ne pas être coupé. */
+  .hero__code {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+}
+
+
+/* ==========================================================================
+   [14] ACCESSIBILITÉ / ДОСТУПНОСТЬ
+   ========================================================================== */
+
+/*
+  RU: Устройства без мыши (телефоны, планшеты): свечение за курсором не нужно.
+  FR : Appareils sans souris (téléphones, tablettes) : le halo du curseur est inutile.
+*/
+@media (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/*
+  RU: Если в системе включено «уменьшить движение» — отключаем анимации и показываем всё сразу.
+      Бегущая лента превращается в обычный ряд иконок (копии скрыты).
+  FR : Si le système demande de « réduire les animations » : on les coupe et on affiche tout d'un coup.
+      Le bandeau défilant devient une simple rangée d'icônes (les copies sont masquées).
+*/
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body,
+  body::before,
+  body::after,
+  .hero__content,
+  .tech-slider__track,
+  .tech-item,
+  .hero__code--done::after {
+    animation: none;
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .tech-slider {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .tech-slider__track {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tech-item {
+    margin-right: 20px;
+  }
+
+  .tech-item--clone {
+    display: none;
+  }
 }

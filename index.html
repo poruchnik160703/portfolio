@@ -1,928 +1,803 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- =========================
-       BASIC META
-  ========================== -->
+
+  <!--
+RU: Основные настройки страницы: кодировка, заголовок, описание, favicon, шрифты, иконки и CSS.
+FR : Réglages principaux de la page : encodage, titre, description, favicon, polices, icônes et CSS.
+-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!--
+RU: Заголовок вкладки и описание сайта. Description может отображаться в результатах поиска.
+FR : Titre de l’onglet et description du site. La description peut apparaître dans les résultats de recherche.
+-->
   <title>Portfolio | PK</title>
-  <meta name="description" content="Portfolio développeur - projets, compétences et parcours">
+  <meta name="description" content="Portfolio PORUCHNIK Karolina - projets, compétences et parcours">
 
-  <!-- =========================
-       FONTS (можно заменить позже)
-  ========================== -->
+  <!--
+RU: Open Graph — настройки превью сайта при отправке ссылки.
+После публикации можно добавить og:image и og:url с полным URL сайта.
+
+FR : Open Graph — paramètres de l’aperçu du site lors du partage d’un lien.
+Après la mise en ligne, vous pouvez ajouter og:image et og:url avec l’URL complète du site.
+-->
+  <meta property="og:title" content="Portfolio | PK">
+  <meta property="og:description" content="Portfolio développeur - projets, compétences et parcours">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+
+  <!--
+RU: Favicon — иконка сайта во вкладке браузера.
+Сейчас используется встроенная иконка «PK».
+Чтобы заменить её, укажите путь к своему файлу, например : images/icons/favicon.png.
+
+FR : Favicon — icône du site dans l’onglet du navigateur.
+Une icône « PK » intégrée est utilisée pour le moment.
+Pour la remplacer, indiquez le chemin vers votre fichier, par exemple : images/icons/favicon.png.
+-->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060c'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='bold' text-anchor='middle' fill='%237dd3fc'%3EPK%3C/text%3E%3C/svg%3E">
+
+  <!--
+RU: Внешние ресурсы, для которых нужен интернет:
+- Google Fonts — шрифт Inter ;
+- Font Awesome — иконки кнопок ;
+- Devicon — иконки технологий и социальных сетей.
+Версии библиотек зафиксированы.
+CSS сайта подключается последним, чтобы его правила имели приоритет.
+
+FR : Ressources externes nécessitant une connexion Internet :
+- Google Fonts — police Inter ;
+- Font Awesome — icônes des boutons ;
+- Devicon — icônes des technologies et des réseaux sociaux.
+Les versions des bibliothèques sont fixées.
+Le CSS du site est chargé en dernier afin que ses règles soient prioritaires.
+-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Простой современный шрифт -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- =========================
-       CSS
-  ========================== -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css">
   <link rel="stylesheet" href="style.css">
 
-<!-- иконки соц.сетей библиотека -->
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-
+  <!--
+RU: Если JavaScript отключён, скрытые анимацией элементы остаются видимыми.
+FR : Si JavaScript est désactivé, les éléments masqués par les animations restent visibles.
+-->
+  <noscript>
+    <style>.reveal { opacity: 1; transform: none; }</style>
+  </noscript>
 
 </head>
 
-
-
 <body>
-<div class="cursor-glow"></div>
-<!-- =========================
-     NAVIGATION
-========================== -->
-<header class="header">
-  <nav class="nav">
-    <div class="nav__logo">
-      <a href="#">PK</a>
-    </div>
 
-    <ul class="nav__links">
-      <li><a href="#profil">Profil</a></li>
-      <li><a href="#formation">Formation</a></li>
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#experience">Expérience</a></li>
-      <li><a href="#interets">intérêts</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <!--
+    RU: Ссылка «Перейти к содержимому» — видна только при навигации с клавиатуры (клавиша Tab).
+    FR : Lien « Aller au contenu » — visible uniquement à la navigation au clavier (touche Tab).
+  -->
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
 
-<!-- =========================
-     HERO SECTION
-========================== -->
-<section class="hero">
-
-  <div class="hero__content">
-
-    <p class="hero__availability">Disponible</p>
-
-    <h1 class="hero__title">
-      <span>Karolina</span> <br>
-      <span class="hero__lastname">PORUCHNIK</span>
-    </h1>
-
-    <p class="hero__subtitle">
-      Étudiante
-    </p>
-
-    <!-- =========================
-     TECH STACK SLIDER
-========================= -->
-
-<div class="tech-slider">
-
-  <div class="tech-slider__track">
-
-    <!-- FIRST SET -->
-
-    <div class="tech-item">
-      <i class="devicon-csharp-plain"></i>
-    </div>
-
-    <div class="tech-item">
-      <i class="devicon-visualstudio-plain"></i>
-    </div>
-
-    <div class="tech-item">
-      <i class="devicon-microsoftsqlserver-plain"></i>
-    </div>
-
-    <div class="tech-item">
-      <i class="devicon-html5-plain"></i>
-    </div>
-
-    <div class="tech-item">
-      <i class="devicon-css3-plain"></i>
-    </div>
-
-<div class="tech-item"> 
-      <i class="devicon-intellij-plain"></i>
-    </div> 
+  <!--
+    RU: Декоративное свечение, которое плавно следует за курсором мыши (управляется js/script.js → Cursor glow).
+    FR : Halo décoratif qui suit doucement le curseur (géré par js/script.js → Cursor glow).
+  -->
+  <div class="cursor-glow" aria-hidden="true"></div>
 
 
-    <div class="tech-item">
-      <i class="devicon-javascript-plain"></i>
-    </div>
+    <!--
+      ==========================================================================
+      HEADER / ШАПКА САЙТА
+      ==========================================================================
 
-    <div class="tech-item">
-      <i class="devicon-git-plain"></i>
-    </div>
+      RU: Шапка сайта с логотипом, навигацией и мобильным меню.
+      На экранах меньше 900px ссылки заменяются кнопкой-бургером.
 
-    <div class="tech-item">
-      <i class="devicon-delphi-plain"></i>
-    </div>
+      Чтобы добавить пункт меню, скопируйте строку <li>...</li> и измените href и текст.
+      href должен совпадать с id нужной секции.
 
-    <!-- DUPLICATE FOR INFINITE LOOP -->
+      FR : En-tête du site avec logo, navigation et menu mobile.
+      Sous 900px, les liens sont remplacés par un bouton burger.
 
-   <div class="tech-item">
-      <i class="devicon-csharp-plain"></i>
-    </div>
+      Pour ajouter un élément au menu, copiez une ligne <li>...</li> et modifiez href et le texte.
+      href doit correspondre à l’id de la section concernée.
+    -->
+  <header class="header">
+    <nav class="nav" aria-label="Navigation principale">
 
-    <div class="tech-item">
-      <i class="devicon-visualstudio-plain"></i>
-    </div>
+      <a class="nav__logo" href="#accueil">PK</a>
 
-    <div class="tech-item">
-      <i class="devicon-microsoftsqlserver-plain"></i>
-    </div>
+      <!--
+        RU: Кнопка мобильного меню. Видна только на узких экранах.
+        Логика находится в js/script.js → Mobile menu.
 
-    <div class="tech-item">
-      <i class="devicon-html5-plain"></i>
-    </div>
+        FR : Bouton du menu mobile. Visible uniquement sur les petits écrans.
+        La logique se trouve dans js/script.js → Mobile menu.
+      -->
+      <button class="nav__toggle" id="nav-toggle" type="button"
+              aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
 
-    <div class="tech-item">
-      <i class="devicon-css3-plain"></i>
-    </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#formation">Formation</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#experience">Expérience</a></li>
+        <li><a href="#interets">Intérêts</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-<div class="tech-item"> 
-      <i class="devicon-Intellij-plain"></i>
-    </div> 
-
-
-    <div class="tech-item">
-      <i class="devicon-javascript-plain"></i>
-    </div>
-
-    <div class="tech-item">
-      <i class="devicon-git-plain"></i>
-    </div>
-
-    <div class="tech-item">
-      <i class="devicon-delhi-plain"></i>
-    </div>
-  </div>
-
-</div>
-    <br>
-
-    <p class="hero__code typing-text"></p>
+    </nav>
+  </header>
 
 
-    <p class="hero__description">
-      Développeuse backend passionnée par les systèmes distribués et les architectures modernes.
-      Actuellement en formation en France.
-    </p>
+  <!--
+    RU: Основное содержимое сайта — от главного экрана до контактов.
+    FR : Contenu principal du site, de l’accueil jusqu’aux contacts.
+  -->
+  <main id="contenu">
 
-    <div class="hero__buttons">
-      <a href="#projets" class="btn">Voir mes projets</a>
-      <a href="#contact" class="btn btn--secondary">Me contacter</a>
-    </div>
+    <!--
+      ========================================================================
+      HERO / ГЛАВНЫЙ ЭКРАН
+      ========================================================================
 
-  </div>
+      RU: Первый экран: статус, имя, подпись, лента технологий, печатающийся текст,
+      описание и кнопки.
 
-</section>
+      Где менять:
+      - имя → <h1>
+      - подпись → .hero__subtitle
+      - печатающийся текст → .hero__code
+      - описание → .hero__description
+      - технологии → блок Tech slider ниже
 
-<!-- =========================
-     MAIN CONTENT
-========================== -->
-<main>
+      FR : Premier écran : statut, nom, sous-titre, technologies, texte animé,
+      description et boutons.
 
-  <!-- PROFIL -->
-  <section id="profil" class="section reveal">
-    <h2 class="section__title">Profil</h2>
-    <div class="profile-card">
-      <!-- сюда позже вставим твой текст -->
-       <p>
-Technicienne-programmeuse en informatique, diplômée d’un BTS (Bac+2), avec une expérience en développement logiciel et en administration de bases de données.
-</p>
+      À modifier :
+      - nom → <h1>
+      - sous-titre → .hero__subtitle
+      - texte animé → .hero__code
+      - description → .hero__description
+      - technologies → bloc Tech slider ci-dessous
+    -->
+    <section class="hero" id="accueil">
+      <div class="hero__content">
 
-<p>
-Actuellement étudiante en DU Passerelle à l’Université Paris Dauphine-PSL, je poursuis mon intégration dans le système universitaire français et le développement de mes compétences techniques.
-</p>
+        <p class="hero__availability">Disponible</p>
 
-<p>
-Sérieuse et motivée, je souhaite m’investir pleinement dans des projets académiques ou professionnels afin de renforcer mon expérience en développement et en ingénierie logicielle.
-</p>
-    </div>
-  </section>
+        <h1 class="hero__title">
+          <span>Karolina</span>
+          <span class="hero__lastname">PORUCHNIK</span>
+        </h1>
 
-  <!-- =========================================
-     SECTION FORMATION
-     Parcours académique
-     Образование
-========================================== -->
+        <p class="hero__subtitle">Étudiante</p>
 
-<section id="formation" class="section">
+        <!--
+          RU: Tech slider — бегущая лента иконок технологий.
+              Чтобы добавить технологию: скопируйте одну строку <div class="tech-item">...</div>
+              и замените название иконки (список: https://devicon.dev).
+              Дубликат для бесконечной прокрутки создаётся автоматически скриптом (js/script.js → Tech slider),
+              поэтому иконки нужно писать ТОЛЬКО ОДИН РАЗ.
+              Также обновите список технологий в aria-label (для экранных дикторов).
+          FR : Tech slider — bandeau défilant des icônes de technologies.
+              Pour ajouter une technologie : copiez une ligne <div class="tech-item">...</div>
+              et remplacez le nom de l'icône (liste : https://devicon.dev).
+              Le doublon pour le défilement infini est créé automatiquement par le script (js/script.js → Tech slider),
+              donc écrivez les icônes UNE SEULE FOIS.
+              Mettez aussi à jour la liste des technologies dans aria-label (pour les lecteurs d'écran).
+        -->
+        <div class="tech-slider" role="img"
+             aria-label="Technologies : C#, Visual Studio, SQL Server, HTML, CSS, IntelliJ, JavaScript, Git, Delphi">
+          <div class="tech-slider__track">
+            <div class="tech-item"><i class="devicon-csharp-plain"></i></div>
+            <div class="tech-item"><i class="devicon-visualstudio-plain"></i></div>
+            <div class="tech-item"><i class="devicon-microsoftsqlserver-plain"></i></div>
+            <div class="tech-item"><i class="devicon-html5-plain"></i></div>
+            <div class="tech-item"><i class="devicon-css3-plain"></i></div>
+            <div class="tech-item"><i class="devicon-intellij-plain"></i></div>
+            <div class="tech-item"><i class="devicon-javascript-plain"></i></div>
+            <div class="tech-item"><i class="devicon-git-plain"></i></div>
+            <div class="tech-item"><i class="devicon-delphi-plain"></i></div>
+          </div>
+        </div>
 
-  <h2 class="section__title">
-    Formation
-  </h2>
+        <!--
+          RU: Текст, который «печатается» по буквам (эффект: js/script.js → Typewriter).
+          FR : Texte « tapé » lettre par lettre (effet : js/script.js → Typewriter).
+        -->
+        <p class="hero__code">&lt;technicienne programmeuse /&gt;</p>
 
-  <!-- Timeline = ligne chronologique -->
-  <!-- Хронологическая линия -->
+        <p class="hero__description">
+          Étudiante en Licence Informatique à Sorbonne Université. Passionnée par la programmation et les technologies informatiques.
 
-  <div class="timeline">
-
-    <!-- =====================================
-         DU PASSERELLE
-         DU = Diplôme Universitaire
-         Университетская программа адаптации
-    ====================================== -->
-
-    <article class="timeline__item">
-
-      <div class="timeline__date">
-        09.2025 – 04.2026
-      </div>
-
-      <div class="timeline__content">
-
-        <h3>
-          DU Passerelle
-        </h3>
-
-        <p class="timeline__place">
-          Université Paris Dauphine–PSL · 75016 Paris
-        </p>
-
-        <div class="timeline__text">
-
-          Apprentissage intensif du français :
-          progression du niveau A2 vers B1.
-
-          <br><br>
-
-
-          Communication orale et rédaction en français (textes universitaires)
-          Compréhension de textes académiques français
-          Gestion interculturelle & adaptation au milieu académique français
-
-
+        <div class="hero__buttons">
+          <a href="#projets" class="btn">Voir mes projets</a>
+          <a href="#contact" class="btn btn--secondary">Me contacter</a>
         </div>
 
       </div>
+    </section>
 
-    </article>
 
-    <!-- =====================================
-         IDC FORMATION
-         Formation d’insertion professionnelle
-         Профессиональная интеграция
-    ====================================== -->
+    <!--
+    ========================================================================
+      PROFIL / О СЕБЕ («À propos de moi»)
+    ========================================================================
+      RU: Короткий рассказ о себе в стеклянной карточке. Каждый <p> — отдельный абзац:
+          чтобы добавить абзац, скопируйте <p>...</p>.
+          Фото: раскомментируйте строку <img> ниже, положите файл в images/profile/
+          и напишите в alt короткое описание фото (для незрячих пользователей и поисковиков).
+      FR : Court texte de présentation dans une carte en verre. Chaque <p> est un paragraphe :
+          pour en ajouter un, copiez <p>...</p>.
+          Photo : décommentez la ligne <img> ci-dessous, placez le fichier dans images/profile/
+          et écrivez dans alt une courte description de la photo (pour les malvoyants et les moteurs de recherche).
+    -->
+    <section id="profil" class="section reveal">
+      <h2 class="section__title">Profil</h2>
 
-    <article class="timeline__item">
+      <div class="profile-card">
+        <!-- <img class="profile-card__photo" src="images/profile/photo.jpg" alt="Portrait de Karolina Poruchnik"> -->
 
-      <div class="timeline__date">
-        12.2024 – 07.2025
-      </div>
-
-      <div class="timeline__content">
-
-        <h3>
-          Formation Parcours d'entrée dans l'emploi
-        </h3>
-
-        <p class="timeline__place">
-          IDC Formation · 94130 Nogent-sur-Marne
+        <p>
+          Technicienne-programmeuse en informatique, diplômée d’un BTS (Bac+2), avec une expérience en programmation, développement logiciel et administration de bases de données.
         </p>
 
-        <p class="timeline__text">
-
-          Remise à niveau linguistique
-          (A1 vers A2)
-          et découverte du milieu professionnel en France.
-
+        <p>
+          Actuellement en Licence 2 Informatique à Sorbonne Université, je renforce mes connaissances en programmation, structures de données, logique, mathématiques discrètes et systèmes informatiques.
         </p>
 
-      </div>
-
-    </article>
-
-    <!-- =====================================
-         BTS TECHNICIEN-PROGRAMMEUR
-         Diplôme principal en informatique
-         Основное образование
-    ====================================== -->
-
-    <article class="timeline__item">
-
-      <div class="timeline__date">
-        2019 – 2023
-      </div>
-
-      <div class="timeline__content">
-
-        <h3>
-          BTS Technicien-programmeur
-        </h3>
-
-        <p class="timeline__place">
-          Collège d'État d’industrie et d’économie
-          de Voronej · Russie
-        </p>
-
-        <p class="timeline__text">
-
-          Spécialité :
-          « Programmation dans les systèmes informatiques ».
-
-          <br><br>
-
-          Formation de 4 ans :
-          architecture des systèmes,
-          algorithmique,
-          réseaux informatiques
-          et bases de données.
-
-          <br><br>
-
-          Attestation de comparabilité ENIC-NARIC :
-          Niveau 5.
-
-        </p>
-
-      </div>
-
-    </article>
-
-    <!-- =====================================
-         CERTIFICAT INFORMATIQUE
-         Formation informatique de base
-         Базовое IT образование
-    ====================================== -->
-
-    <article class="timeline__item">
-
-      <div class="timeline__date">
-        2019 – 2021
-      </div>
-
-      <div class="timeline__content">
-
-        <h3>
-          Certificat Formation Opérateur informatique
-        </h3>
-
-        <p class="timeline__place">
-          Collège d'État d’industrie et d’économie
-          de Voronej · Russie
-        </p>
-
-        <p class="timeline__text">
-
-          Bases de l’informatique,
-          maintenance logicielle
-          et utilisation des outils bureautiques.
-
+        <p>
+          Je développe progressivement mon expérience à travers des projets académiques et personnels, en mettant en pratique mes connaissances et en explorant différentes technologies informatiques.
         </p>
       </div>
-    </article>
-  </div>
+    </section>
 
-</section>
- <!-- =========================================
-     COMPÉTENCES
-========================================= -->
 
-<section id="competences" class="section reveal">
+    <!--
+    ========================================================================
+      FORMATION / ОБРАЗОВАНИЕ
+    ========================================================================
+      RU: Хронология образования: слева дата, справа карточка. Записи идут от новых к старым (сверху вниз).
+          ЧТОБЫ ДОБАВИТЬ ЗАПИСЬ: скопируйте целиком блок <article class="timeline__item"> ... </article>
+          и вставьте на нужное место. Измените:
+          1. дату (timeline__date);
+          2. название (h3);
+          3. место (timeline__place);
+          4. описание (timeline__text) — каждый абзац в своём <p>; для списка используйте <ul> (см. пример в DU Passerelle).
+      FR : Chronologie de la formation : la date à gauche, la carte à droite. Du plus récent au plus ancien (de haut en bas).
+          POUR AJOUTER UNE ENTRÉE : copiez le bloc entier <article class="timeline__item"> ... </article>
+          et collez-le à l'endroit voulu. Modifiez :
+          1. la date (timeline__date) ;
+          2. le titre (h3) ;
+          3. le lieu (timeline__place) ;
+          4. la description (timeline__text) — un <p> par paragraphe ; pour une liste, utilisez <ul> (voir l'exemple DU Passerelle).
+          Le même modèle est utilisé plus bas pour « Travaux académiques » (et pour de futures expériences / certifications).
+    -->
+    <section id="formation" class="section">
+      <h2 class="section__title">Formation</h2>
 
-  <h2 class="section__title">
-    Compétences
-  </h2>
+      <div class="timeline">
+        <!-- RU: Сорбонна второй курс  . FR : Sorbonne Université L2. -->
+        <article class="timeline__item">
+          <div class="timeline__date">09.2026 – Présent</div>
+          <div class="timeline__content">
+            <h3>Licence Informatique</h3>
+            <p class="timeline__place">Sorbonne Université · 75005 Paris</p>
 
-  <div class="skills-grid">
+            <p class="timeline__text">
+              L2 Informatique monodisciplinaire
+            </p>
+            <ul class="timeline__text timeline__list">
+              <li>Machine et représentation</li>
+              <li>Mathématiques discrètes</li>
+              <li>Structures de données</li>
+              <li>Logique</li>
+              <li>Initiation au système et au Shell</li>
+            </ul>
+          </div>
+        </article>
 
-    <!-- TECH -->
+        <!-- RU: Университетская программа адаптации (пример записи со списком). FR : Programme universitaire d'adaptation (exemple d'entrée avec liste). -->
+        <article class="timeline__item">
+          <div class="timeline__date">09.2025 – 04.2026</div>
+          <div class="timeline__content">
+            <h3>DU Passerelle</h3>
+            <p class="timeline__place">Université Paris Dauphine–PSL · 75016 Paris</p>
 
-    <div class="skills-card">
+            <p class="timeline__text">
+              Apprentissage intensif du français : progression du niveau A2 vers B1.
+            </p>
+            <ul class="timeline__text timeline__list">
+              <li>Communication orale et rédaction en français (textes universitaires)</li>
+              <li>Compréhension de textes académiques français</li>
+              <li>Gestion interculturelle &amp; adaptation au milieu académique français</li>
+            </ul>
+          </div>
+        </article>
 
-      <h3>
-        Développement
-      </h3>
+        <!-- RU: Профессиональная интеграция. FR : Insertion professionnelle. -->
+        <article class="timeline__item">
+          <div class="timeline__date">12.2024 – 07.2025</div>
+          <div class="timeline__content">
+            <h3>Formation Parcours d'entrée dans l'emploi</h3>
+            <p class="timeline__place">IDC Formation · 94130 Nogent-sur-Marne</p>
 
-      <div class="skill">
+            <p class="timeline__text">
+              Remise à niveau linguistique (A1 vers A2) et découverte du milieu professionnel en France.
+            </p>
+          </div>
+        </article>
 
-        <span>C#</span>
-        <span>Intermédiaire</span>
+        <!-- RU: Основной диплом по информатике. FR : Diplôme principal en informatique. -->
+        <article class="timeline__item">
+          <div class="timeline__date">2019 – 2023</div>
+          <div class="timeline__content">
+            <h3>BTS Technicien-programmeur</h3>
+            <p class="timeline__place">Collège d'État d’industrie et d’économie de Voronej · Russie</p>
 
-      </div>
+            <p class="timeline__text">
+              Spécialité : « Programmation dans les systèmes informatiques ».
+            </p>
+            <p class="timeline__text">
+              Formation de 4 ans : architecture des systèmes, algorithmique, réseaux informatiques et bases de données.
+            </p>
+            <p class="timeline__text">
+              Attestation de comparabilité ENIC-NARIC : Niveau 5.
+            </p>
+          </div>
+        </article>
 
-      <div class="skill">
+        <!-- RU: Базовое IT-образование (сертификат). FR : Formation informatique de base (certificat). -->
+        <article class="timeline__item">
+          <div class="timeline__date">2019 – 2021</div>
+          <div class="timeline__content">
+            <h3>Certificat Formation Opérateur informatique</h3>
+            <p class="timeline__place">Collège d'État d’industrie et d’économie de Voronej · Russie</p>
 
-        <span>SQL</span>
-        <span>Intermédiaire</span>
-
-      </div>
-
-      <div class="skill">
-
-        <span>HTML / CSS</span>
-        <span>Débutant</span>
-
-      </div>
-
-      <div class="skill">
-
-        <span>Programmation orientée objet</span>
-        <span>Intermédiaire</span>
-
-      </div>
-
-      <div class="skill">
-
-        <span>Algorithmique</span>
-        <span>Intermédiaire</span>
-
-      </div>
-
-    </div>
-
-    <!-- TOOLS -->
-
-    <div class="skills-card">
-
-      <h3>
-        Outils & Technologies
-      </h3>
-
-      <div class="tools">
-
-        <span>Visual Studio</span>
-        <span>SQL Server</span>
-        <span>Git</span>
-        <span>Windows</span>
-        <span>MS Office</span>
-        <span>WinForms</span>
-        <span>IDE</span>
-
-      </div>
-
-    </div>
-
-    <!-- LANGUAGES -->
-
-    <div class="skills-card">
-
-      <h3>
-        Langues
-      </h3>
-
-      <div class="language-item">
-
-        <span>🇷🇺 Russe</span>
-        <strong>C2 · Langue maternelle</strong>
-
-      </div>
-
-      <div class="language-item">
-
-        <span>🇫🇷 Français</span>
-        <strong>B2</strong>
-
-      </div>
-
-      <div class="language-item">
-
-        <span>🇬🇧 Anglais</span>
-        <strong>B1</strong>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
- <!-- =========================================
-     SECTION PROJETS
-     Projets académiques et techniques
-     Учебные и технические проекты
-========================================== -->
-
-<section id="projets" class="section">
-
-  <h2 class="section__title">
-    Projets
-  </h2>
-
-  <div class="projects">
-
-    <!-- =====================================
-         PROJET 1
-         Projet de diplôme
-         Дипломный проект
-    ====================================== -->
-
-    <article class="project-card">
-
-      <h3 class="project-card__title">
-        Système d’information pour e-commerce
-      </h3>
-
-      <p class="project-card__desc">
-
-        Conception d’un système automatisé
-        de recherche, de gestion et d’analyse
-        commerciale pour une boutique en ligne.
-
-        <br><br>
-
-        Développement de l’architecture,
-        conception de la base de données
-        et automatisation du traitement des données.
-
-      </p>
-
-      <div class="project-card__tags">
-
-        <span>C#</span>
-        <span>SQL</span>
-        <span>Database</span>
-        <span>WinForms</span>
-        <span>Algorithmique</span>
+            <p class="timeline__text">
+              Bases de l’informatique, maintenance logicielle et utilisation des outils bureautiques.
+            </p>
+          </div>
+        </article>
 
       </div>
+    </section>
 
-    </article>
 
-    <!-- =====================================
-         PROJET 2
-         Fitness Center
-         Информационная система фитнес центра
-    ====================================== -->
+    <!--
+    ========================================================================
+      COMPÉTENCES / НАВЫКИ (+ инструменты и языки)
+    ========================================================================
+      RU: Три карточки: «Développement» (навыки с уровнем), «Outils & Technologies» (теги) и «Langues» (языки).
+          Добавить навык:      скопируйте <li class="skill">...</li> и измените название и уровень.
+          Добавить инструмент: скопируйте <li>...</li> внутри <ul class="tags tags--large">.
+          Добавить язык:       скопируйте <li class="language-item">...</li>.
+          Новую карточку (например «Certifications») можно сделать копией всего <div class="skills-card">.
+      FR : Trois cartes : « Développement » (compétences avec niveau), « Outils & Technologies » (étiquettes) et « Langues ».
+          Ajouter une compétence : copiez <li class="skill">...</li> et changez le nom et le niveau.
+          Ajouter un outil :       copiez <li>...</li> dans <ul class="tags tags--large">.
+          Ajouter une langue :     copiez <li class="language-item">...</li>.
+          Une nouvelle carte (par ex. « Certifications ») peut être une copie de tout le <div class="skills-card">.
+    -->
+    <section id="competences" class="section reveal">
+      <h2 class="section__title">Compétences</h2>
 
-    <article class="project-card">
+      <div class="skills-grid">
 
-      <h3 class="project-card__title">
-        Système d’information — Fitness Center
-      </h3>
+        <!-- RU: Навыки разработки. FR : Compétences en développement. -->
+        <div class="skills-card">
+          <h3>Programmation & Informatique</h3>
+          <ul>
+            <li class="skill"><span>C#</span><span>Intermédiaire</span></li>
+            <li class="skill"><span>JavaScript</span><span>Débutant</span></li>
+            <li class="skill"><span>SQL</span><span>Intermédiaire</span></li>
+            <li class="skill"><span>HTML / CSS</span><span>Débutant</span></li>
+            <li class="skill"><span>Programmation orientée objet</span><span>Intermédiaire</span></li>
+            <li class="skill"><span>Algorithmique</span><span>Intermédiaire</span></li>
+            <li class="skill"><span>Structures de données</span><span>Intermédiaire</span></li>
+          </ul>
+        </div>
 
-      <p class="project-card__desc">
+        <!-- RU: Инструменты и технологии (теги-«пилюли»). FR : Outils et technologies (étiquettes). -->
+        <div class="skills-card">
+          <h3>Outils &amp; Technologies</h3>
+          <ul class="tags tags--large">
+            <li>Visual Studio</li>
+            <li>SQL Server</li>
+            <li>Git</li>
+            <li>Windows</li>
+            <li>WinForms</li>
+            <li>Shell</li>
+          </ul>
+        </div>
 
-        Développement d’une application desktop
-        pour la gestion d’un centre de fitness.
-
-        <br><br>
-
-        Gestion des clients,
-        stockage des données,
-        recherche d’informations
-        et interaction avec une base SQL.
-
-      </p>
-
-      <div class="project-card__tags">
-
-        <span>C#</span>
-        <span>SQL</span>
-        <span>Desktop App</span>
-        <span>CRUD</span>
-        <span>WinForms</span>
-
-      </div>
-
-    </article>
-
-    <!-- =====================================
-         PROJET 3
-         Développement et administration BDD
-         Базы данных
-    ====================================== -->
-
-    <article class="project-card">
-
-      <h3 class="project-card__title">
-        Développement et administration de bases de données
-      </h3>
-
-      <p class="project-card__desc">
-
-        Création et administration
-        de bases de données relationnelles.
-
-        <br><br>
-
-        Réalisation de requêtes SQL,
-        structuration des données,
-        relations entre tables
-        et connexion avec des applications C#.
-
-      </p>
-
-      <div class="project-card__tags">
-
-        <span>SQL</span>
-        <span>C#</span>
-        <span>Database Design</span>
-        <span>SQL Server</span>
+        <!-- RU: Языки и уровень владения. FR : Langues et niveau. -->
+        <div class="skills-card">
+          <h3>Langues</h3>
+          <ul>
+            
+            <li class="language-item"><span>🇫🇷 Français</span><strong>B2</strong></li>
+            <li class="language-item"><span>🇬🇧 Anglais</span><strong>B1</strong></li>
+            <li class="language-item"><span>🇷🇺 Russe</span><strong>Langue maternelle</strong></li>
+          </ul>
+        </div>
 
       </div>
+    </section>
+
+
+    <!--
+    ========================================================================
+      PROJETS / ПРОЕКТЫ
+    ========================================================================
+      RU: Сетка карточек проектов (автоматически перестраивается под ширину экрана).
+          ЧТОБЫ ДОБАВИТЬ ПРОЕКТ: скопируйте целиком блок <article class="card"> ... </article>
+          и вставьте внутрь <div class="card-grid">. Измените:
+          1. название (card__title);
+          2. описание (card__desc) — каждый абзац в своём <p>;
+          3. изображение — раскомментируйте <img> (файл положите в images/projects/);
+          4. технологии — теги в <ul class="tags">;
+          5. ссылку — раскомментируйте <a class="card__link">.
+      FR : Grille de cartes de projets (s'adapte automatiquement à la largeur de l'écran).
+          POUR AJOUTER UN PROJET : copiez le bloc entier <article class="card"> ... </article>
+          et collez-le dans <div class="card-grid">. Modifiez :
+          1. le titre (card__title) ;
+          2. la description (card__desc) — un <p> par paragraphe ;
+          3. l'image — décommentez <img> (fichier dans images/projects/) ;
+          4. les technologies — étiquettes dans <ul class="tags"> ;
+          5. le lien — décommentez <a class="card__link">.
+    -->
+    <section id="projets" class="section">
+      <h2 class="section__title">Projets</h2>
+
+      <div class="card-grid">
+        <article class="card">
+
+  <h3 class="card__title">Portfolio web — Tech Week 2026</h3>
+
+  <p class="card__desc">
+    Conception et développement d’un portfolio web dans le cadre de la Tech Week à l’Université Paris Dauphine–PSL.
+  </p>
+<p>
 
-    </article>
-
-    <!-- =====================================
-         PROJET 4
-         Intégration logicielle
-         Интеграция модулей
-    ====================================== -->
-
-    <article class="project-card">
-
-      <h3 class="project-card__title">
-        Intégration de modules logiciels
-      </h3>
-
-      <p class="project-card__desc">
-
-        Participation à l’intégration,
-        au test et à la validation
-        de modules logiciels dans des applications desktop.
-
-        <br><br>
-
-        Correction de bugs,
-        interaction entre interface utilisateur
-        et base de données.
-
-      </p>
-
-      <div class="project-card__tags">
-
-        <span>C#</span>
-        <span>SQL</span>
-        <span>Testing</span>
-        <span>Debugging</span>
-
-      </div>
-
-    </article>
-
-  </div>
-<!-- =========================================
-     SECTION TRAVAUX ACADÉMIQUES
-     Travaux universitaires
-     Академические работы
-========================================== -->
-
-<section id="experience" class="section">
-
-  <h2 class="section__title">
-    Travaux académiques
-  </h2>
-
-  <div class="timeline">
-
-    <!-- ÉCONOMIE -->
-
-    <article class="timeline__item">
-
-      <div class="timeline__date">
-        Projet académique
-      </div>
-
-      <div class="timeline__content">
-
-        <h3>
-          Analyse économique d’un logiciel d’automatisation
-        </h3>
-
-        <p class="timeline__text">
-
-          Étude de l’impact du coût de production
-          sur les résultats financiers d’une entreprise.
-
-          <br><br>
-
-          Analyse de l’efficacité économique
-          d’un logiciel destiné à automatiser
-          le travail d’une entreprise du bâtiment.
-
-        </p>
-
-      </div>
-
-    </article>
-
-    <!-- OPÉRATEUR -->
-
-    <article class="timeline__item">
-
-      <div class="timeline__date">
-        Certification
-      </div>
-
-      <div class="timeline__content">
-
-        <h3>
-          Opérateur informatique
-        </h3>
-
-        <p class="timeline__text">
-
-          Formation en maintenance logicielle,
-          bureautique,
-          systèmes informatiques
-          et outils numériques professionnels.
-
-        </p>
-
-      </div>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-<!--EXPÉRIENCE
-< section>
-  <section id="experience" class="section">
-    <h2 class="section__title">Expérience</h2>
-  </section> -->
-
-  <!-- =========================================
-     CENTRES D’INTÉRÊT
-========================================= -->
-
-<section id="interets"class="section reveal">
-
-  <h2 class="section__title">
-    Centres d’intérêt
-  </h2>
-
-  <div class="projects">
-
-    <article class="project-card">
-
-      <h3 class="project-card__title">
-        Développement & technologies
-      </h3>
-
-      <p class="project-card__desc">
-
-        Intérêt pour le développement logiciel,
-        les interfaces modernes
-        et les technologies web.
-
-      </p>
-
-    </article>
-
-    <article class="project-card">
-
-      <h3 class="project-card__title">
-        Langues & intégration
-      </h3>
-
-      <p class="project-card__desc">
-
-        Apprentissage du français,
-        découverte de la culture française
-        et intégration universitaire.
-
-      </p>
-
-    </article>
-
-    <article class="project-card">
-
-      <h3 class="project-card__title">
-        Autoformation
-      </h3>
-
-      <p class="project-card__desc">
-
-        Formation autonome via FreeCodeCamp
-        et pratique personnelle du développement web.
-
-      </p>
-
-    </article>
-
-
-   <article class="project-card">
-
-      <h3 class="project-card__title">
-        Créativité & arts visuels
-      </h3>
-
-      <p class="project-card__desc">
-
-        6 ans de formation en arts plastiques (dessin, composition, créativité visuelle).
-
-      </p>
-
-    </article>
-
-  </div>
-
-</section>
-
-<!-- ========================
-     CONTACT
-======================== -->
-
-<section id="contact" class="section">
-
-  <h2 class="section__title">
-    Contact
-  </h2>
-
-  <!-- social icons -->
-
-  <div class="contact-icons">
-
-    <a
-      href="https://github.com/poruchnik160703"
-      target="_blank"
-    >
-      <i class="devicon-github-original"></i>
-    </a>
-
-    <a
-      href="https://www.linkedin.com/in/karolina-poruchnik-b246463a7/"
-      target="_blank"
-    >
-      <i class="devicon-linkedin-plain"></i>
-    </a>
-
-  </div>
-
-  <!-- email card -->
-
-  <div class="email-card">
-
-    <p class="email-card__title">
-  poruchnik160703@gmail.com
 </p>
+  <p class="card__desc">
+    Création de l’interface et ajout d’interactions avec HTML, CSS et JavaScript.
+  </p>
 
-    <div class="email-card__actions">
+  <p class="card__desc">
+    🏅 Badge officiel « TECH WEEK — Concevoir et coder » délivré par Université PSL.
+  </p>
+<p>
 
-      <!-- write email -->
+</p>
+  <a
+    class="card__link"
+    href="https://openbadgefactory.com/obv3/credentials/e2b72c4b3de7fb7a8f4e3fa809ad7f6d3ec7294a.html"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Voir le badge →
+  </a>
 
-      <a
-        href="mailto:poruchnik160703@gmail.com"
-        class="email-btn"
-      >
-        <i class="fa-solid fa-paper-plane"></i>
-        Écrire
-      </a>
+  <ul class="tags">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
 
-      <!-- copy email -->
+</article>
 
-      <button
-        class="email-btn"
-        id="copyEmailBtn"
-      >
-        <i class="fa-regular fa-copy"></i>
-        Copier
-      </button>
 
-    </div>
+        <!-- RU: Дипломный проект (в нём показан полный шаблон: изображение и ссылка закомментированы). FR : Projet de diplôme (contient le modèle complet : image et lien en commentaire). -->
+        <article class="card">
+          <!-- <img class="card__image" src="images/projects/nom-du-projet.jpg" alt="Capture d'écran du projet" loading="lazy"> -->
 
-    <!-- copied text -->
+          <h3 class="card__title">Système d’information pour e-commerce</h3>
 
-    <p
-      class="copy-message"
-      id="copyMessage"
-    >
-      Email copié ✓
-    </p>
+          <p class="card__desc">
+            Conception d’un système automatisé de recherche, de gestion et d’analyse commerciale pour une boutique en ligne.
+          </p>
+          <p class="card__desc">
+            Développement de l’architecture, conception de la base de données et automatisation du traitement des données.
+          </p>
+
+          <ul class="tags">
+            <li>C#</li>
+            <li>SQL</li>
+            <li>Database</li>
+            <li>WinForms</li>
+            <li>Algorithmique</li>
+          </ul>
+
+          <!-- <a class="card__link" href="https://github.com/votre-compte/nom-du-projet" target="_blank" rel="noopener noreferrer">Voir le projet</a> -->
+        </article>
+
+        <!-- RU: Информационная система фитнес-центра. FR : Système d'information d'un centre de fitness. -->
+        <article class="card">
+          <h3 class="card__title">Système d’information — Fitness Center</h3>
+
+          <p class="card__desc">
+            Développement d’une application desktop pour la gestion d’un centre de fitness.
+          </p>
+          <p class="card__desc">
+            Gestion des clients, stockage des données, recherche d’informations et interaction avec une base SQL.
+          </p>
+
+          <ul class="tags">
+            <li>C#</li>
+            <li>SQL</li>
+            <li>Desktop App</li>
+            <li>CRUD</li>
+            <li>WinForms</li>
+          </ul>
+        </article>
+
+        <!-- RU: Базы данных. FR : Bases de données. -->
+        <article class="card">
+          <h3 class="card__title">Développement et administration de bases de données</h3>
+
+          <p class="card__desc">
+            Création et administration de bases de données relationnelles.
+          </p>
+          <p class="card__desc">
+            Réalisation de requêtes SQL, structuration des données, relations entre tables et connexion avec des applications C#.
+          </p>
+
+          <ul class="tags">
+            <li>SQL</li>
+            <li>C#</li>
+            <li>Database Design</li>
+            <li>SQL Server</li>
+          </ul>
+        </article>
+
+        <!-- RU: Интеграция модулей. FR : Intégration de modules. -->
+        <article class="card">
+          <h3 class="card__title">Intégration de modules logiciels</h3>
+
+          <p class="card__desc">
+            Participation à l’intégration, au test et à la validation de modules logiciels dans des applications desktop.
+          </p>
+          <p class="card__desc">
+            Correction de bugs, interaction entre interface utilisateur et base de données.
+          </p>
+
+          <ul class="tags">
+            <li>C#</li>
+            <li>SQL</li>
+            <li>Testing</li>
+            <li>Debugging</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!--
+    ========================================================================
+      TRAVAUX ACADÉMIQUES / УЧЕБНЫЕ РАБОТЫ  (меню: «Expérience», id="experience")
+    ========================================================================
+      RU: Учебные работы и сертификаты в виде хронологии (тот же шаблон, что и в «Formation»).
+          Записи добавляются копированием блока <article class="timeline__item">.
+      FR : Travaux universitaires et certifications sous forme de chronologie (même modèle que « Formation »).
+          On ajoute une entrée en copiant le bloc <article class="timeline__item">.
+    -->
+    <section id="experience" class="section">
+      <h2 class="section__title">Expérience & travaux académiques & certifications </h2>
+
+      <div class="timeline">
+        
+        <article class="timeline__item">
+          <div class="timeline__date">06.2022 – 08.2022</div>
+          <div class="timeline__content">
+            <h3>Assistante technicienne en réparation de smartphones</h3>
+
+            <p class="timeline__text">
+              iPochino · Voronej, Russie
+            </p>
+
+            <p class="timeline__text">
+              Assistance au diagnostic, au démontage et à la réparation de smartphones.
+            </p>
+          </div>
+        </article>
+
+
+        <article class="timeline__item">
+          <div class="timeline__date">Projet académique</div>
+          <div class="timeline__content">
+            <h3>Impact du coût de production sur les résultats financiers</h3>
+
+            <p class="timeline__text">
+              Travail de cours réalisé dans le cadre de la discipline « Économie ».
+            </p>
+            <p class="timeline__text">
+              Analyse de l’influence du coût de production sur les résultats financiers d’une organisation et évaluation de l’efficacité économique d’un logiciel destiné à automatiser les activités d’une entreprise du bâtiment.
+            </p>
+          </div>
+        </article>
+
+        <article class="timeline__item">
+          <div class="timeline__date">Certification</div>
+          <div class="timeline__content">
+            <h3>Opérateur informatique</h3>
+
+            <p class="timeline__text">
+              Formation en maintenance logicielle, bureautique, systèmes informatiques et outils numériques professionnels.
+            </p>
+          </div>
+        
+      </div>
+    </section>
+
+
+    <!--
+    ========================================================================
+      ЗАГОТОВКА: БУДУЩАЯ СЕКЦИЯ «EXPÉRIENCES» (профессиональный опыт)
+    ========================================================================
+      RU: Ниже — закомментированная секция. Когда будет что писать, уберите знаки комментария
+          в первой и в последней строке блока (вместе с ними уйдёт и пометка «закомментировано»).
+          ВНИМАНИЕ: id="experience" уже занят секцией выше («Travaux académiques»),
+          поэтому здесь используется id="experiences-pro".
+          После включения секции добавьте пункт в меню (Header):
+          <li><a href="#experiences-pro">Expériences</a></li>
+      FR : Ci-dessous, une section mise en commentaire. Quand vous aurez du contenu, retirez les marques de commentaire
+          de la première et de la dernière ligne du bloc.
+          ATTENTION : id="experience" est déjà utilisé par la section ci-dessus (« Travaux académiques »),
+          d'où id="experiences-pro" ici.
+          Après l'avoir activée, ajoutez l'élément de menu (Header) :
+          <li><a href="#experiences-pro">Expériences</a></li>
+    -->
+    <!--
+    <section id="experiences-pro" class="section">
+      <h2 class="section__title">Expériences</h2>
+      <div class="timeline">
+        Copiez ici un bloc <article class="timeline__item"> depuis « Formation »
+      </div>
+    </section>
+    -->
+
+
+    <!--
+    ========================================================================
+      CENTRES D'INTÉRÊT / ИНТЕРЕСЫ
+    ========================================================================
+      RU: Карточки интересов (тот же компонент «card», что и у проектов, но без тегов).
+          Чтобы добавить интерес: скопируйте <article class="card">...</article>, измените заголовок и текст.
+      FR : Cartes des centres d'intérêt (même composant « card » que les projets, sans étiquettes).
+          Pour en ajouter : copiez <article class="card">...</article>, changez le titre et le texte.
+    -->
+    <section id="interets" class="section reveal">
+  <h2 class="section__title">Centres d’intérêt</h2>
+
+  <div class="card-grid">
+
+    <article class="card">
+      <h3 class="card__title">Voyages &amp; cultures</h3>
+      <p class="card__desc">
+        Voyages à travers différentes régions de Russie et, aujourd’hui, à travers l’Europe, avec une curiosité particulière pour la diversité des peuples, des traditions et des langues.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">Sport &amp; activité physique</h3>
+      <p class="card__desc">
+        Pratique amateur du volley-ball depuis l’enfance, notamment au sein d’équipes de lycée et d’établissement scolaire. Participation aux épreuves sportives du GTO et obtention d’un insigne d’argent.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">Arts visuels</h3>
+      <p class="card__desc">
+        Six années de formation en arts plastiques dans une école artistique pour enfants, notamment en dessin, en composition et en création visuelle.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3 class="card__title">Psychologie &amp; sciences humaines</h3>
+      <p class="card__desc">
+        Lectures et réflexions personnelles autour de la psychologie, du comportement humain et des relations sociales.
+      </p>
+    </article>
 
   </div>
-
-  <!-- CV -->
-
-  <div class="telechargerCV">
-
-    <a
-      href="cv.pdf"
-      download
-      class="btn btn--secondary"
-    >
-      <i class="fa-solid fa-download"></i>
-      Télécharger CV
-    </a>
-
-  </div>
-
 </section>
-<!-- =========================
-     FOOTER
-========================== -->
-<footer class="footer">
-  <p>© 2026 — PORUCHNIK Karolina. Tous droits réservés.</p>
-  <br>
-   <p>Projet réalisé dans le cadre du programme Tech Week — Université Paris Dauphine–PSL.</p>
-</footer>
 
-<!-- JS -->
-<script src="script.js"></script>
+    <!--
+    ========================================================================
+      CONTACT + CV / КОНТАКТЫ И РЕЗЮМЕ
+    ========================================================================
+      RU: Иконки соцсетей, карточка с e-mail (кнопки «Écrire» и «Copier») и кнопка скачивания CV.
+          Где менять:
+          • ссылки на GitHub / LinkedIn → href в блоке «contact-icons»;
+          • e-mail → ДВА места: текст в <p class="email-card__title"> и href="mailto:..." у кнопки «Écrire»
+            (кнопка «Copier» берёт адрес из «Écrire» автоматически);
+          • файл CV → href="cv.pdf" (файл должен лежать рядом с index.html).
+      FR : Icônes des réseaux, carte e-mail (boutons « Écrire » et « Copier ») et bouton de téléchargement du CV.
+          Où modifier :
+          • liens GitHub / LinkedIn → href dans le bloc « contact-icons » ;
+          • e-mail → DEUX endroits : le texte dans <p class="email-card__title"> et href="mailto:..." du bouton « Écrire »
+            (le bouton « Copier » lit l'adresse du bouton « Écrire » automatiquement) ;
+          • fichier CV → href="cv.pdf" (le fichier doit être à côté de index.html).
+    -->
+    <section id="contact" class="section reveal">
+      <h2 class="section__title">Contact</h2>
+
+      <!-- RU: Иконки соцсетей (aria-label нужен, т.к. у ссылок нет текста). FR : Icônes des réseaux (aria-label nécessaire car les liens n'ont pas de texte). -->
+      <div class="contact-icons">
+        <a href="https://github.com/poruchnik160703" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="devicon-github-original" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/karolina-poruchnik-b246463a7/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="devicon-linkedin-plain" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <!-- RU: Карточка с e-mail. FR : Carte e-mail. -->
+      <div class="email-card">
+        <p class="email-card__title">Karolina.Poruchnik@etu.sorbonne-universite.fr</p>
+
+        <div class="email-card__actions">
+          <a href="mailto:Karolina.Poruchnik@etu.sorbonne-universite.fr" class="email-btn" id="email-link">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            Écrire
+          </a>
+
+          <button class="email-btn" id="copy-email-btn" type="button">
+            <i class="fa-regular fa-copy" aria-hidden="true"></i>
+            Copier
+          </button>
+        </div>
+
+        <!--
+          RU: Сообщение после копирования. Текст берётся из data-success / data-error и показывается скриптом
+              (js/script.js → Copy email). Здесь можно изменить тексты.
+          FR : Message affiché après la copie. Le texte vient de data-success / data-error et est affiché par le script
+              (js/script.js → Copy email). Vous pouvez modifier les textes ici.
+        -->
+        <p class="copy-message" id="copy-message" role="status"
+           data-success="Email copié ✓" data-error="Copie impossible : sélectionnez l’adresse à la main"></p>
+      </div>
+
+      <!-- RU: Кнопка скачивания резюме. FR : Bouton de téléchargement du CV. -->
+      <div class="contact__cv">
+        <a href="cv-karolina-poruchnik.pdf" download class="btn btn--secondary">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          Télécharger CV
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!--
+  ==========================================================================
+    FOOTER / ПОДВАЛ
+  ==========================================================================
+    RU: Подвал сайта: копирайт и пометка о проекте. Здесь меняется год и текст.
+    FR : Pied de page : copyright et mention du projet. C'est ici que l'on change l'année et le texte.
+  -->
+  <footer class="footer">
+    <p>© 2026 — PORUCHNIK Karolina. Tous droits réservés.</p>
+    <p>Projet réalisé dans le cadre du programme Tech Week — Université Paris Dauphine–PSL.</p>
+  </footer>
+
+
+  <!--
+    RU: Единственный файл JavaScript (мобильное меню, анимации, копирование e-mail). Подключён в конце страницы.
+    FR : Unique fichier JavaScript (menu mobile, animations, copie de l'e-mail). Chargé en fin de page.
+  -->
+  <script src="js/script.js"></script>
 
 </body>
 </html>
-
-
